@@ -5,6 +5,9 @@ const { personal } = portfolioData;
 
 <section class="hero">
   <div class="container">
+    <div class="hero-logo-container fade-in">
+      <img src="/logo.svg" alt="Logo" class="hero-logo" />
+    </div>
     <h1 class="hero-name fade-in">{personal.name}</h1>
     <div class="hero-title fade-in">{personal.title}</div>
     <div class="hero-location fade-in">{personal.location}</div>
@@ -40,6 +43,19 @@ const { personal } = portfolioData;
     background: radial-gradient(circle, transparent 20%, var(--bg-color) 80%);
     pointer-events: none;
     z-index: 0;
+  }
+
+  .hero-logo-container {
+    margin-bottom: 2rem;
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--text-main);
+    border-radius: 50%;
+    background: var(--bg-color);
+    box-shadow: 8px 8px 0px var(--accent);
   }
 
   .container {

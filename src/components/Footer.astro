@@ -6,12 +6,13 @@ const { contact, personal } = portfolioData;
 <footer class="footer">
   <div class="container">
     <div class="footer-content fade-in">
-      <div class="footer-logo">{personal.name}</div>
+      <div class="footer-logo">
+        <img src="/logo.svg" alt="Logo" class="footer-logo-img" />
+        {personal.name}
+      </div>
       <p class="footer-text">{contact.footer}</p>
       <div class="footer-year">
-        © {new Date().getFullYear()} — Built with <span class="retro-heart"
-          >❤</span
-        > Retro Style
+        Built with <span class="retro-heart">❤</span> Retro Style
       </div>
     </div>
   </div>
@@ -26,10 +27,22 @@ const { contact, personal } = portfolioData;
   }
 
   .footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     font-family: var(--font-heading);
     font-size: 1.5rem;
     color: var(--text-main);
     margin-bottom: 1rem;
+  }
+
+  .footer-logo-img {
+    height: 60px;
+    width: auto;
+    border: 2px solid var(--text-main);
+    border-radius: 50%;
+    background: var(--bg-color);
   }
 
   .footer-text {

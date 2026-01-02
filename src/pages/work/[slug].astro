@@ -26,7 +26,7 @@ if (!project) {
 
 <MainLayout title={`${project.title} - Gonzalo`}>
   <section class="project-detail-section">
-    <div class="container">
+    <div class="container container-wide">
       <div class="section-grid">
         <h2 class="section-title">Proyecto</h2>
         <div class="section-content">
@@ -115,17 +115,29 @@ if (!project) {
     padding: 10rem 0 6rem;
   }
 
+  .container-wide {
+    max-width: 1200px; /* Wider container for project details */
+  }
+
+  .section-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr; /* Reduced from 250px to give more space to content */
+    gap: 3rem;
+  }
+
   .project-detail-title {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
     font-family: var(--font-heading);
     margin-bottom: 1.5rem;
     color: var(--text-main);
+    line-height: 1.1;
   }
 
   .project-detail-meta {
     display: flex;
     gap: 1rem;
     margin-bottom: 4rem;
+    flex-wrap: wrap;
   }
 
   .project-tag {
@@ -146,20 +158,23 @@ if (!project) {
     font-weight: 700;
     font-size: 0.85em;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .project-body-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 320px; /* Fixed sidebar width for better control, more space for text */
     gap: 4rem;
     margin-bottom: 5rem;
+    align-items: start;
   }
 
   .project-detail-description {
     color: var(--text-main);
     font-size: 1.25em;
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 3rem;
+    max-width: 70ch; /* Better line length for readability */
   }
 
   .sidebar-box {
@@ -168,6 +183,7 @@ if (!project) {
     border-radius: 4px;
     margin-bottom: 2rem;
     box-shadow: 6px 6px 0px var(--text-main);
+    background: var(--bg-color);
   }
 
   .sidebar-box.accent {
@@ -191,17 +207,19 @@ if (!project) {
 
   .sidebar-box li {
     margin-bottom: 0.8rem;
-    font-size: 0.95em;
+    font-size: 1em;
     font-family: var(--font-body);
     display: flex;
     gap: 0.5rem;
     align-items: flex-start;
+    line-height: 1.4;
   }
 
   .sidebar-box li::before {
     content: "→";
-    color: var(--text-muted);
+    color: var(--text-main);
     font-weight: 800;
+    flex-shrink: 0;
   }
 
   .project-detail-links {
@@ -211,15 +229,17 @@ if (!project) {
   }
 
   .btn-retro {
+    display: inline-block;
     background: var(--text-main);
     color: var(--bg-color);
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     box-shadow: 4px 4px 0px var(--accent);
     transition: all 0.2s ease;
+    border: 2px solid var(--text-main);
   }
 
   .btn-retro:hover {
@@ -228,13 +248,15 @@ if (!project) {
   }
 
   .social-button {
-    padding: 1rem 2rem;
+    display: inline-block;
+    padding: 1rem 2.5rem;
     border: 2px solid var(--text-main);
     color: var(--text-main);
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    letter-spacing: 0.1em;
   }
 
   .social-button:hover {
@@ -260,13 +282,26 @@ if (!project) {
     color: var(--accent);
   }
 
+  @media (max-width: 1024px) {
+    .project-body-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .sidebar-box {
+      max-width: 500px;
+    }
+  }
+
   @media (max-width: 768px) {
+    .section-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
     .project-detail-title {
       font-size: 2.5rem;
     }
-    .project-body-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+    .project-detail-section {
+      padding-top: 8rem;
     }
   }
 </style>

@@ -6,7 +6,10 @@ const { personal, navigation } = portfolioData;
 <nav class="nav" id="navbar">
   <div class="container">
     <div class="nav-content">
-      <div class="nav-logo">{personal.name}</div>
+      <a href="/" class="nav-logo">
+        <img src="/logo.svg" alt="Logo" class="logo-img" />
+        {personal.name}
+      </a>
       <ul class="nav-links">
         {
           navigation.map((item) => (
@@ -43,11 +46,23 @@ const { personal, navigation } = portfolioData;
   }
 
   .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 400;
     color: var(--text-main);
     letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    height: 40px;
+    width: auto;
+    border: 1px solid var(--text-main);
+    border-radius: 50%; /* Circle like the logo itself */
+    background: var(--bg-color);
   }
 
   .nav-links {
