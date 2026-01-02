@@ -8,9 +8,11 @@ const { personal, navigation } = portfolioData;
     <div class="nav-content">
       <a href="/" class="nav-logo">
         <img src="/logo.svg" alt="Logo" class="logo-img" />
-        {personal.name}
+        <span class="logo-text">{personal.name}</span>
       </a>
-      <ul class="nav-links">
+
+      <!-- Desktop Links -->
+      <ul class="nav-links desktop-only">
         {
           navigation.map((item) => (
             <li>
@@ -21,10 +23,45 @@ const { personal, navigation } = portfolioData;
           ))
         }
       </ul>
-      <button class="mobile-menu" id="mobile-menu">Menu</button>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="menu-toggle mobile-only"
+        id="mobile-menu-toggle"
+        aria-label="Abra el menú"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- Mobile Overlay Menu -->
+<div class="mobile-overlay" id="mobile-overlay">
+  <button class="close-menu" id="close-menu" aria-label="Cerrar el menú"
+    >&times;</button
+  >
+  <div class="overlay-content">
+    <nav class="overlay-nav">
+      {
+        navigation.map((item) => (
+          <a href={`#${item.target}`} class="overlay-link">
+            <span class="link-label">{item.label}</span>
+            <span class="link-arrow">→</span>
+          </a>
+        ))
+      }
+    </nav>
+    <div class="overlay-footer">
+      <p>{personal.location}</p>
+      <div class="overlay-socials">
+        <a href={personal.social.linkedin} target="_blank">LI</a>
+        <a href={personal.social.github} target="_blank">GH</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
   .nav {
@@ -32,17 +69,17 @@ const { personal, navigation } = portfolioData;
     top: 0;
     left: 0;
     right: 0;
-    background: var(--bg-color); /* Cream */
-    z-index: 100;
-    border-bottom: 2px solid var(--text-main); /* Strong retro border */
-    transition: all 0.3s ease;
+    background: var(--bg-color);
+    z-index: 1000;
+    border-bottom: 2px solid var(--text-main);
+    transition: transform 0.3s ease;
   }
 
   .nav-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0;
+    padding: 1.25rem 0;
   }
 
   .nav-logo {
@@ -51,44 +88,40 @@ const { personal, navigation } = portfolioData;
     gap: 0.75rem;
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    font-weight: 400;
     color: var(--text-main);
-    letter-spacing: -0.02em;
     text-decoration: none;
+    z-index: 1100;
   }
 
   .logo-img {
-    height: 40px;
+    height: 38px;
     width: auto;
-    border: 1px solid var(--text-main);
-    border-radius: 50%; /* Circle like the logo itself */
+    border: 1.5px solid var(--text-main);
+    border-radius: 50%;
     background: var(--bg-color);
   }
 
   .nav-links {
     display: flex;
-    gap: 3rem;
+    gap: 2.5rem;
     list-style: none;
   }
 
   .nav-link {
     color: var(--text-muted);
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    font-size: 0.9em;
-    text-decoration: none;
+    font-size: 0.85em;
     transition: all 0.3s ease;
-    cursor: pointer;
     position: relative;
   }
 
   .nav-link:hover {
-    color: var(--accent);
+    color: var(--text-main);
   }
 
-  /* Underline animation */
   .nav-link::after {
     content: "";
     position: absolute;
@@ -104,66 +137,218 @@ const { personal, navigation } = portfolioData;
     width: 100%;
   }
 
-  .mobile-menu {
+  /* Mobile Toggle Styles */
+  .menu-toggle {
     display: none;
+    flex-direction: column;
+    gap: 6px;
     background: none;
-    border: 2px solid var(--text-main);
-    padding: 0.5rem 1rem;
-    font-family: var(--font-body);
-    font-size: 1em;
-    font-weight: 600;
+    border: none;
     cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+  }
+
+  .bar {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-main);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 2rem;
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  .close-menu {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    font-size: 3rem;
     color: var(--text-main);
-    border-radius: 4px;
-    text-transform: uppercase;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.5rem;
+  }
+
+  .overlay-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: 6rem;
+  }
+
+  .overlay-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .overlay-link {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--text-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(26, 44, 56, 0.1);
+    padding-bottom: 1rem;
+    text-decoration: none;
+  }
+
+  .link-arrow {
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .overlay-link:active .link-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .overlay-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .overlay-socials {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .overlay-socials a {
+    font-weight: 800;
+    color: var(--text-main);
+  }
+
+  /* Utilities */
+  .desktop-only {
+    display: flex;
+  }
+  .mobile-only {
+    display: none;
   }
 
   @media (max-width: 768px) {
-    .nav-links {
+    .desktop-only {
       display: none;
     }
+    .mobile-only {
+      display: flex;
+    }
 
-    .mobile-menu {
-      display: block;
+    .logo-text {
+      font-size: 1.25rem;
+    }
+
+    /* Animate hamburger to X */
+    .menu-toggle.active .bar:nth-child(1) {
+      transform: translateY(4px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+      transform: translateY(-4px) rotate(-45deg);
+    }
+
+    /* Lock scroll when menu open */
+    :global(body.menu-open) {
+      overflow: hidden;
+    }
+
+    .mobile-overlay {
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .overlay-link {
+      font-size: 2.2rem; /* Better scale for mobile */
+      padding: 1.25rem 0;
+      transform: translateX(-20px);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .mobile-overlay.active .overlay-link {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* Staggered animation for links */
+    .mobile-overlay.active .overlay-link:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    .mobile-overlay.active .overlay-link:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+    .mobile-overlay.active .overlay-link:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+    .mobile-overlay.active .overlay-link:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    .close-menu {
+      top: calc(1.5rem + env(safe-area-inset-top));
+      font-weight: 300;
+      transition: transform 0.3s ease;
+    }
+
+    .close-menu:active {
+      transform: scale(0.9) rotate(90deg);
     }
   }
 </style>
 
 <script>
-  const mobileMenuBtn = document.getElementById("mobile-menu");
-  const navLinks = document.querySelector(".nav-links") as HTMLElement;
-  let isMenuOpen = false;
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const closeBtn = document.getElementById("close-menu");
+  const overlay = document.getElementById("mobile-overlay");
+  const links = document.querySelectorAll(".overlay-link");
 
-  if (mobileMenuBtn && navLinks) {
-    mobileMenuBtn.addEventListener("click", () => {
-      isMenuOpen = !isMenuOpen;
-      if (isMenuOpen) {
-        navLinks.style.display = "flex";
-        navLinks.style.flexDirection = "column";
-        navLinks.style.position = "absolute";
-        navLinks.style.top = "100%";
-        navLinks.style.left = "0";
-        navLinks.style.right = "0";
-        navLinks.style.background = "var(--bg-color)";
-        navLinks.style.padding = "2rem";
-        navLinks.style.borderBottom = "2px solid var(--text-main)";
-        navLinks.style.gap = "1.5rem";
-        navLinks.style.alignItems = "center";
-        mobileMenuBtn.textContent = "Close";
-      } else {
-        navLinks.style.display = "none";
-        mobileMenuBtn.textContent = "Menu";
-      }
-    });
+  function toggleMenu() {
+    toggle?.classList.toggle("active");
+    overlay?.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  }
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll(".nav-link").forEach((link) => {
+  if (toggle && overlay) {
+    toggle.addEventListener("click", toggleMenu);
+    closeBtn?.addEventListener("click", toggleMenu);
+
+    links.forEach((link) => {
       link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-          navLinks.style.display = "none";
-          mobileMenuBtn.textContent = "Menu";
-          isMenuOpen = false;
-        }
+        toggle.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.classList.remove("menu-open");
       });
     });
   }

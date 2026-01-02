@@ -143,17 +143,45 @@ const { personal } = portfolioData;
   }
 
   @media (max-width: 768px) {
+    .hero {
+      padding: 6rem 0 4rem;
+      min-height: 85vh;
+    }
+
+    .hero-logo {
+      width: 100px;
+      height: 100px;
+      box-shadow: 4px 4px 0px var(--accent);
+    }
+
     .hero-name {
-      font-size: 3rem;
+      font-size: 3.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-size: 0.9em;
+      letter-spacing: 0.15em;
+    }
+
+    .hero-location {
+      margin-bottom: 2rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.1em;
+      margin-bottom: 3rem;
+      padding: 0 0.5rem;
     }
 
     .hero-actions {
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
     .btn {
       width: 100%;
+      padding: 1.1rem;
     }
   }
 </style>

@@ -17,7 +17,10 @@ const { title = `${personal.name} - ${personal.title}` } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <title>{title}</title>
     <link rel="icon" href="/logo.svg" />
     <meta name="description" content={personal.tagline} />
@@ -156,18 +159,47 @@ const { title = `${personal.name} - ${personal.title}` } = Astro.props;
   }
 
   @media (max-width: 768px) {
+    :root {
+      --lh: 1.5em; /* Tighter leading for mobile */
+    }
+
+    body {
+      font-size: 15px; /* Slightly smaller base font */
+      -webkit-tap-highlight-color: transparent; /* Remove mobile highlight browser default */
+      padding-bottom: env(
+        safe-area-inset-bottom
+      ); /* Support for notch phones */
+    }
+
     .container {
-      padding: 0 1.5rem;
+      padding: 0 1.25rem;
+    }
+
+    .section {
+      padding: 4rem 0; /* Reduced padding for mobile app feel */
     }
 
     .section-grid {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 2rem;
     }
 
     .section-title {
       position: static;
       margin-bottom: 2rem;
+      font-size: 0.8em;
+    }
+
+    .section-content p {
+      font-size: 1.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Buttons feel more like app buttons on mobile */
+    .btn {
+      width: 100%;
+      text-align: center;
+      padding: 1.1rem 2rem;
     }
   }
 </style>
