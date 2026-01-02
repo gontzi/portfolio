@@ -3,34 +3,44 @@
 <style>
   #cursor-follower {
     position: fixed;
-    width: 200px;
-    height: 200px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--accent);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 0;
-    opacity: 0.3;
-    transition: opacity 1s ease;
-    background: radial-gradient(
-      200px circle at center,
-      rgba(55, 58, 63, 0.1) 0%,
-      rgba(81, 83, 88, 0.05) 50%,
-      transparent 100%
-    );
+    z-index: 9999;
+    opacity: 0;
+    transition:
+      opacity 0.3s ease,
+      transform 0.1s ease-out;
+    mix-blend-mode: multiply; /* Interesting retro interaction */
+  }
+
+  /* Show only on desktop */
+  @media (max-width: 1024px) {
+    #cursor-follower {
+      display: none;
+    }
   }
 </style>
 
 <script>
   let mousePosition = { x: 0, y: 0 };
-  const cursorFollower = document.getElementById('cursor-follower');
+  const cursorFollower = document.getElementById("cursor-follower");
 
-  function handleMouseMove(e) {
-    mousePosition = { x: e.clientX, y: e.clientY };
+  if (cursorFollower) {
+    function handleMouseMove(e: MouseEvent) {
+      mousePosition = { x: e.clientX, y: e.clientY };
 
-    if (cursorFollower) {
-      cursorFollower.style.left = `${mousePosition.x - 100}px`;
-      cursorFollower.style.top = `${mousePosition.y - 100}px`;
+      cursorFollower!.style.opacity = "1";
+      cursorFollower!.style.transform = `translate(${mousePosition.x - 20}px, ${mousePosition.y - 20}px)`;
     }
-  }
 
-  document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove);
+
+    // Hide when mouse leaves window
+    document.addEventListener("mouseleave", () => {
+      cursorFollower!.style.opacity = "0";
+    });
+  }
 </script>

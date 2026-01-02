@@ -1,249 +1,275 @@
 ---
-import MainLayout from '../layouts/Layout.astro';
+import MainLayout from "../layouts/Layout.astro";
 
 const socialLinks = [
-  { name: 'Portafolio', url: 'https://lalo.lol/me' },
-  { name: 'GitHub', url: 'https://lalo.lol/gh' },
-  { name: 'LinkedIn', url: 'https://lalo.lol/in' },
-  { name: 'Twitter', url: 'https://lalo.lol/x' },
+  { name: "Portafolio", url: "https://lalo.lol/me" },
+  { name: "GitHub", url: "https://lalo.lol/gh" },
+  { name: "LinkedIn", url: "https://lalo.lol/in" },
+  { name: "Twitter", url: "https://lalo.lol/x" },
 ];
 
 const services = [
   {
-    title: 'Diseño Web',
+    title: "Diseño Web",
     description:
-      'Soluciones a medida, ideales para restaurantes, estudios de yoga, tiendas de moda y más.',
+      "Soluciones a medida, ideales para restaurantes, estudios de yoga, tiendas de moda y más.",
   },
   {
-    title: 'SEO y Optimización de Velocidad',
+    title: "SEO y Optimización de Velocidad",
     description:
-      'Todos los sitios están optimizados para motores de búsqueda y un rendimiento ultrarrápido.',
+      "Todos los sitios están optimizados para motores de búsqueda y un rendimiento ultrarrápido.",
   },
   {
-    title: 'Soporte y Actualizaciones',
+    title: "Soporte y Actualizaciones",
     description:
-      'Ofrezco soporte continuo para mantener tu sitio seguro y siempre actualizado.',
+      "Ofrezco soporte continuo para mantener tu sitio seguro y siempre actualizado.",
   },
 ];
 
 const contactInfo = [
-  { text: 'tunuevaweb.es', href: 'https://lalo.lol/tnw' },
-  { text: 'contacto@tunuevaweb.es', href: 'mailto:contacto@tunuevaweb.es' },
-  { text: '@tunuevawebya', href: 'https://instagram.com/tunuevawebya' },
-  { text: '@tunuevaweb', href: 'https://www.tiktok.com/@tunuevaweb' },
+  { text: "tunuevaweb.es", href: "https://lalo.lol/tnw" },
+  { text: "contacto@tunuevaweb.es", href: "mailto:contacto@tunuevaweb.es" },
+  { text: "@tunuevawebya", href: "https://instagram.com/tunuevawebya" },
+  { text: "@tunuevaweb", href: "https://www.tiktok.com/@tunuevaweb" },
 ];
 
 const examples = [
-  { name: 'Bite&Smash', href: 'https://bite-and-smash.tunuevaweb.es' },
-  { name: 'Pulse Studio', href: 'https://pulse-studio.tunuevaweb.es' },
+  { name: "Bite&Smash", href: "https://bite-and-smash.tunuevaweb.es" },
+  { name: "Pulse Studio", href: "https://pulse-studio.tunuevaweb.es" },
 ];
 ---
 
 <MainLayout title="Info - Gonzalo Azaldegi">
-  <div class="min-h-screen bg-white text-gray-900 font-light">
-    <div class="max-w-4xl mx-auto px-8 pb-16 pt-32">
-      <header class="text-center mb-20 fade-in">
-        <h1 class="text-6xl md:text-7xl font-extralight mb-4 tracking-tighter">
-          Gonzalo Azaldegi
-        </h1>
-        <p class="text-lg text-gray-600 mb-4 tracking-wide">
-          Desarrollador Web | Especialista en Astro & Diseñador UI/UX
-        </p>
-        <p class="text-gray-500 max-w-2xl mx-auto leading-relaxed">
+  <div class="info-page">
+    <div class="container animate-content">
+      <header class="info-header fade-in">
+        <h1 class="info-hero-title">Gonzalo Azaldegi</h1>
+        <div class="info-badge">Desarrollador Web | UI/UX Designer</div>
+        <p class="info-hero-description">
           Soy Gonzalo Azaldegi, un desarrollador web especializado en frameworks
           modernos como Astro y Vue. Me apasiona el diseño minimalista y crear
           experiencias web atractivas y funcionales.
         </p>
       </header>
 
-      <section
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
+      <section class="info-links-grid">
         {
-          socialLinks.map((link, index) => (
+          socialLinks.map((link) => (
             <a
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="group flex items-center justify-between p-4 border border-gray-200 hover:border-gray-400 transition-colors duration-300 fade-in"
-              style={`animation-delay: ${index * 100}ms`}>
-              <span class="text-sm tracking-wide">{link.name}</span>
-              <span class="text-gray-400 group-hover:text-gray-600 transition-colors duration-300">
-                →
-              </span>
+              class="info-link-card fade-in"
+            >
+              <span class="info-link-name">{link.name}</span>
+              <span class="info-link-arrow">↗</span>
             </a>
           ))
         }
       </section>
 
-      <section class="mb-20 fade-in">
-        <div class="border-t border-gray-200 pt-16">
-          <h2 class="text-3xl font-light mb-8 tracking-tight">
-            TuNuevaWeb - Servicios Profesionales
-          </h2>
-          <p class="text-gray-600 mb-12 leading-relaxed text-lg">
-            En TuNuevaWeb, ofrezco sitios web modernos y funcionales para
-            negocios de todos los tamaños, empezando desde un coste muy bajo.
-            Mis sitios te ayudarán a destacar en el mundo digital.
-          </p>
+      <section class="info-section fade-in">
+        <h2 class="info-section-title">TuNuevaWeb — Servicios</h2>
+        <p class="info-section-intro">
+          Ofrezco sitios web modernos y funcionales para negocios de todos los
+          tamaños, centrándome en el alto impacto visual y rendimiento.
+        </p>
 
-          <div class="space-y-8 mb-12">
-            {
-              services.map((service, index) => (
-                <div
-                  class="group border-b border-gray-100 pb-6 fade-in"
-                  style={`animation-delay: ${index * 150}ms`}>
-                  <h3 class="text-lg font-medium mb-2 group-hover:text-gray-600 transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p class="text-gray-500 text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              ))
-            }
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {
-              contactInfo.map((item, index) => (
-                <a
-                  href={item.href}
-                  class="text-sm text-gray-500 hover:text-gray-900 transition-colors duration-300 fade-in"
-                  style={`animation-delay: ${index * 100 + 300}ms`}>
-                  {item.text}
-                </a>
-              ))
-            }
-          </div>
+        <div class="services-list">
+          {
+            services.map((service) => (
+              <div class="service-row">
+                <h3 class="service-name">{service.title}</h3>
+                <p class="service-desc">{service.description}</p>
+              </div>
+            ))
+          }
         </div>
       </section>
 
-      <section class="mb-20 fade-in">
-        <div class="border-t border-gray-200 pt-16">
-          <p class="text-center text-gray-600 mb-8">
-            Puedes ver dos ejemplos de sitios web en
-          </p>
-          <div class="flex justify-center gap-8 flex-wrap">
-            {
-              examples.map((example, index) => (
-                <a
-                  href={example.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group text-sm tracking-wide border-b border-gray-300 pb-1 hover:border-gray-900 transition-colors duration-300 fade-in"
-                  style={`animation-delay: ${index * 100}ms`}>
-                  <span class="group-hover:text-gray-600 transition-colors duration-300">
-                    {example.name}
-                  </span>
-                </a>
-              ))
-            }
-          </div>
+      <section class="info-contact-footer fade-in">
+        <div class="contact-grid">
+          {
+            contactInfo.map((item) => (
+              <a href={item.href} class="contact-pill">
+                {item.text}
+              </a>
+            ))
+          }
         </div>
       </section>
 
-      <section class="space-y-16 mb-20">
-        <div class="border-t border-gray-200 pt-16 fade-in">
-          <h2 class="text-2xl font-light mb-6 tracking-tight">
-            Plantilla Astro
-          </h2>
-          <p class="text-gray-600 mb-8 leading-relaxed">
-            Plantilla minimalista y moderna en Astro + TailwindCSS, ideal para
-            proyectos rápidos y con estilo. Descárgala y personalízala.
-          </p>
-          <a
-            href="https://github.com/AzalDevX/astro-template"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block text-sm tracking-wide border-b border-gray-900 pb-1 hover:text-gray-600 transition-colors duration-300">
-            Descargar Plantilla
-          </a>
-        </div>
-
-        <div class="border-t border-gray-200 pt-16 fade-in">
-          <h2 class="text-2xl font-light mb-6 tracking-tight">Plantilla Vue</h2>
-          <p class="text-gray-600 mb-8 leading-relaxed">
-            Plantilla minimalista y moderna para Vue 3 + Vite + TailwindCSS,
-            diseñada para aplicaciones de una sola página (SPA). Incluye una
-            configuración inicial optimizada y soporte para personalización
-            completa.
-          </p>
-          <a
-            href="https://github.com/AzalDevX/vue-template"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block text-sm tracking-wide border-b border-gray-900 pb-1 hover:text-gray-600 transition-colors duration-300">
-            Descargar Plantilla
-          </a>
-        </div>
-      </section>
-
-      <div class="text-center mb-16 fade-in">
-        <a
-          href="/#contact"
-          class="inline-block text-lg tracking-wide border-b-2 border-gray-900 pb-2 hover:text-gray-600 hover:border-gray-600 transition-all duration-300">
-          Contactar
+      <footer class="info-footer fade-in">
+        <a href="/#contact" class="btn btn-primary">Hablemos</a>
+        <br /><br />
+        <a href="https://lalo.lol/blog" target="_blank" class="blog-link">
+          Lee mis artículos sobre desarrollo web →
         </a>
-      </div>
-
-      <div class="text-center fade-in">
-        <a
-          href="https://lalo.lol/blog"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm text-gray-500 hover:text-gray-900 transition-colors duration-300 tracking-wide">
-          Lee mis artículos sobre desarrollo web
-        </a>
-      </div>
+      </footer>
     </div>
   </div>
 </MainLayout>
 
 <style>
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.6s ease-out forwards;
+  .info-page {
+    padding: 10rem 0 6rem;
+    background-image: radial-gradient(var(--text-muted) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-opacity: 0.1;
   }
 
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  .info-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .info-hero-title {
+    font-size: 4rem;
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+    color: var(--text-main);
+  }
+
+  .info-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--accent);
+    color: var(--text-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8em;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    border: 2px solid var(--text-main);
+  }
+
+  .info-hero-description {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1.25em;
+    line-height: 1.6;
+    color: var(--text-main);
+  }
+
+  .info-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 6rem;
+  }
+
+  .info-link-card {
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border: 2px solid var(--text-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 0px var(--text-main);
+  }
+
+  .info-link-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--accent);
+    background: var(--bg-color);
+  }
+
+  .info-section {
+    background: var(--text-main);
+    color: var(--bg-color);
+    padding: 4rem;
+    border-radius: 8px;
+    margin-bottom: 6rem;
+    box-shadow: 10px 10px 0px var(--accent);
+  }
+
+  .info-section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--bg-color);
+  }
+
+  .info-section-intro {
+    font-size: 1.2em;
+    opacity: 0.9;
+    margin-bottom: 3rem;
+  }
+
+  .service-row {
+    border-bottom: 1px solid rgba(243, 240, 231, 0.2);
+    padding: 1.5rem 0;
+  }
+
+  .service-row:last-child {
+    border-bottom: none;
+  }
+
+  .service-name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  .service-desc {
+    font-size: 1em;
+    opacity: 0.8;
+  }
+
+  .contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 6rem;
+  }
+
+  .contact-pill {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid var(--text-main);
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .contact-pill:hover {
+    background: var(--text-main);
+    color: var(--bg-color);
+  }
+
+  .info-footer {
+    text-align: center;
+  }
+
+  .blog-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .blog-link:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .info-hero-title {
+      font-size: 2.5rem;
+    }
+    .info-section {
+      padding: 2rem;
+    }
+    .info-section-title {
+      font-size: 1.8rem;
     }
   }
-
-  /* Los retrasos de las animaciones escalonadas se manejan en línea */
 </style>
-
-<script>
-  // Añadir un observador de intersección para las animaciones de aparición
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px',
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-      }
-    });
-  }, observerOptions);
-
-  // Observar todos los elementos con la clase fade-in
-  document.querySelectorAll('.fade-in').forEach((el) => {
-    el.style.animationPlayState = 'paused';
-    observer.observe(el);
-  });
-
-  // Iniciar los primeros elementos inmediatamente
-  setTimeout(() => {
-    document.querySelectorAll('.fade-in').forEach((el, index) => {
-      if (index < 3) {
-        // Los primeros elementos
-        el.style.animationPlayState = 'running';
-      }
-    });
-  }, 100);
-</script>

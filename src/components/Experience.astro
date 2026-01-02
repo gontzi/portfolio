@@ -1,5 +1,5 @@
 ---
-import portfolioData from '../data/portfolio.json';
+import portfolioData from "../data/portfolio.json";
 const { experience } = portfolioData;
 ---
 
@@ -8,66 +8,112 @@ const { experience } = portfolioData;
     <div class="section-grid">
       <h2 class="section-title">{experience.title}</h2>
       <div class="section-content">
-        {
-          experience.positions.map((position) => (
-            <div class="experience-item fade-in">
-              <div class="experience-header">
-                <h3 class="experience-title">{position.title}</h3>
-                <span class="experience-period">{position.period}</span>
+        <div class="experience-timeline">
+          {
+            experience.positions.map((position) => (
+              <div class="experience-item fade-in">
+                <div class="experience-header">
+                  <div class="experience-title-group">
+                    <h3 class="experience-title">{position.title}</h3>
+                    <div class="experience-company">{position.company}</div>
+                  </div>
+                  <span class="experience-period">{position.period}</span>
+                </div>
+                <p class="experience-description">{position.description}</p>
+                <div class="experience-tech">{position.technologies}</div>
               </div>
-              <div class="experience-company">{position.company}</div>
-              <p class="experience-description">{position.description}</p>
-              <div class="experience-tech">{position.technologies}</div>
-            </div>
-          ))
-        }
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
+  .experience-timeline {
+    border-left: 2px solid var(--text-main);
+    padding-left: 2rem;
+    margin-left: 0.5rem;
+  }
+
   .experience-item {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+
+  /* Timeline dot */
+  .experience-item::before {
+    content: "";
+    position: absolute;
+    left: calc(-2rem - 6px - 1px);
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent);
+    border: 2px solid var(--text-main);
+    border-radius: 50%;
   }
 
   .experience-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
   }
 
   .experience-title {
-    color: #000;
-    font-size: 1.1em;
+    color: var(--text-main);
+    font-size: 1.4em;
+    font-family: var(--font-heading);
+    margin-bottom: 0.25rem;
   }
 
   .experience-company {
-    color: #666;
-    margin-bottom: 1rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
   .experience-period {
-    color: #999;
-    font-size: 0.8em;
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 0.85em;
+    font-weight: 700;
+    border: 1px solid var(--text-main);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: var(--bg-color);
   }
 
   .experience-description {
-    color: #333;
+    color: var(--text-main);
     margin-bottom: 1rem;
+    font-size: 1.05em;
+    line-height: 1.6;
   }
 
   .experience-tech {
-    color: #666;
-    font-size: 0.8em;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    font-family: var(--font-body);
+    font-style: italic;
   }
 
   @media (max-width: 768px) {
     .experience-header {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
+      gap: 1rem;
+    }
+
+    .experience-timeline {
+      padding-left: 1.5rem;
+    }
+
+    .experience-item::before {
+      left: calc(-1.5rem - 6px - 1px);
     }
   }
 </style>

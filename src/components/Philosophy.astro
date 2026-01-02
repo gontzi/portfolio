@@ -1,5 +1,5 @@
 ---
-import portfolioData from '../data/portfolio.json';
+import portfolioData from "../data/portfolio.json";
 const { philosophy } = portfolioData;
 ---
 
@@ -8,13 +8,18 @@ const { philosophy } = portfolioData;
         <div class="section-grid">
             <h2 class="section-title">{philosophy.title}</h2>
             <div class="section-content">
-                {philosophy.values.map(value => (
-                    <div class="value fade-in">
-                        <h3 class="value-title">{value.title}</h3>
-                        <p class="value-tagline">{value.tagline}</p>
-                        <p class="value-description">{value.description}</p>
-                    </div>
-                ))}
+                {
+                    philosophy.values.map((value) => (
+                        <div class="value fade-in">
+                            <div class="value-header">
+                                <h3 class="value-title">{value.title}</h3>
+                                <div class="value-line" />
+                            </div>
+                            <p class="value-tagline">{value.tagline}</p>
+                            <p class="value-description">{value.description}</p>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </div>
@@ -22,33 +27,52 @@ const { philosophy } = portfolioData;
 
 <style>
     .value {
-        margin-bottom: 4rem; 
-        padding-top: 2rem; 
-        border-top: 1px solid #e0e0e0; 
+        margin-bottom: 5rem;
     }
-    
-    .value:first-child {
-        border-top: none; 
-        padding-top: 0; 
+
+    .value:last-child {
+        margin-bottom: 0;
+    }
+
+    .value-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .value-title {
-        color: #000;
-        font-size: 1.2em; 
-        font-weight: 500; 
-        margin-bottom: 0.8rem;
+        color: var(--text-main);
+        font-size: 1.8em;
+        font-family: var(--font-heading);
+    }
+
+    .value-line {
+        flex-grow: 1;
+        height: 2px;
+        background: repeating-linear-gradient(
+            to right,
+            var(--accent),
+            var(--accent) 5px,
+            transparent 5px,
+            transparent 10px
+        ); /* Retro dashed line */
     }
 
     .value-tagline {
-        color: #666;
-        font-size: 0.95em; 
-        margin-bottom: 1.5rem; 
-        font-weight: 400;
+        color: var(--accent);
+        font-size: 0.9em;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-family: var(--font-body);
     }
-    
+
     .value-description {
-        color: #333;
-        font-size: 0.9em; 
-        line-height: 1.6em; 
+        color: var(--text-main);
+        font-size: 1.1em;
+        line-height: 1.7em;
+        max-width: 60ch;
     }
 </style>

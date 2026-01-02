@@ -1,13 +1,13 @@
 ---
-import MainLayout from '../../layouts/Layout.astro';
-import portfolioData from '../../data/portfolio.json';
+import MainLayout from "../../layouts/Layout.astro";
+import portfolioData from "../../data/portfolio.json";
 
 export async function getStaticPaths() {
   const createSlug = (title) => {
     return title
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
   };
 
   const projects = portfolioData.work.projects;
@@ -20,95 +20,89 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 
 if (!project) {
-  Astro.redirect('/404');
+  return Astro.redirect("/404");
 }
 ---
 
 <MainLayout title={`${project.title} - Gonzalo`}>
-  <section class="project-detail-section section">
+  <section class="project-detail-section">
     <div class="container">
       <div class="section-grid">
         <h2 class="section-title">Proyecto</h2>
         <div class="section-content">
           <h1 class="project-detail-title fade-in">{project.title}</h1>
+
           <div class="project-detail-meta fade-in">
-            <span class="project-detail-year">{project.year}</span>
-            <span class="project-detail-tech">{project.technologies}</span>
+            <span class="project-tag">{project.year}</span>
+            <span class="project-tag-accent">{project.technologies}</span>
           </div>
 
-          <p class="project-detail-description fade-in">
-            {project.longDescription}
-          </p>
+          <div class="project-body-grid">
+            <div class="project-main-info fade-in">
+              <p class="project-detail-description">
+                {project.longDescription}
+              </p>
 
-          {
-            project.features && project.features.length > 0 && (
-              <div class="project-detail-features fade-in">
-                <h3>Características:</h3>
-                <ul>
-                  {project.features.map((feature) => (
-                    <li>- {feature}</li>
-                  ))}
-                </ul>
+              <div class="project-detail-links">
+                {
+                  project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn-retro"
+                    >
+                      Ver sitio en vivo
+                    </a>
+                  )
+                }
+                {
+                  project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="social-button"
+                    >
+                      GitHub
+                    </a>
+                  )
+                }
               </div>
-            )
-          }
+            </div>
 
-          {
-            project.metrics && project.metrics.length > 0 ? (
-              <div class="project-detail-features fade-in">
-                <h3>Métricas:</h3>
-                <ul>
-                  {project.metrics.map((metric, index) => (
-                    <li key={index}>- {metric}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <div class="project-detail-features fade-in">
-                <h3>Métricas:</h3>
-                <p>No hay métricas disponibles para este proyecto.</p>
-              </div>
-            )
-          }
+            <aside class="project-sidebar fade-in">
+              {
+                project.features && project.features.length > 0 && (
+                  <div class="sidebar-box">
+                    <h3>Características</h3>
+                    <ul>
+                      {project.features.map((feature) => (
+                        <li>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              }
 
-          <div class="project-detail-links fade-in">
-            {
-              project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn btn-primary">
-                  Ir al sitio
-                </a>
-              )
-            }
-            {
-              project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn">
-                  GitHub Repo
-                </a>
-              )
-            }
-            {
-              project.metricUrl && (
-                <a
-                  href={project.metricUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn">
-                  Más Métricas
-                </a>
-              )
-            }
+              {
+                project.metrics && project.metrics.length > 0 && (
+                  <div class="sidebar-box accent">
+                    <h3>Métricas</h3>
+                    <ul>
+                      {project.metrics.map((metric) => (
+                        <li>{metric}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              }
+            </aside>
           </div>
 
-          <div class="back-link fade-in">
-            <a href="/#work" class="btn">&larr; Volver a Trabajos</a>
+          <div class="back-link-container fade-in">
+            <a href="/#work" class="back-link">← Volver a todos los proyectos</a
+            >
           </div>
         </div>
       </div>
@@ -118,93 +112,161 @@ if (!project) {
 
 <style>
   .project-detail-section {
-    padding-top: 10rem; /* Adjust padding to account for sticky navbar */
+    padding: 10rem 0 6rem;
   }
 
   .project-detail-title {
-    font-size: 2.5em;
-    font-weight: 500;
+    font-size: 4rem;
+    font-family: var(--font-heading);
     margin-bottom: 1.5rem;
-    color: #000;
+    color: var(--text-main);
   }
 
   .project-detail-meta {
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 2rem;
-    color: #666;
-    font-size: 0.9em;
+    margin-bottom: 4rem;
   }
 
-  .project-detail-year,
-  .project-detail-tech {
-    background-color: #f0f0f0;
-    padding: 0.3em 0.8em;
-    border-radius: 3px;
+  .project-tag {
+    padding: 0.4rem 1rem;
+    border: 2px solid var(--text-main);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .project-tag-accent {
+    padding: 0.4rem 1rem;
+    background: var(--text-main);
+    color: var(--bg-color);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+  }
+
+  .project-body-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
   }
 
   .project-detail-description {
+    color: var(--text-main);
+    font-size: 1.25em;
+    line-height: 1.6;
     margin-bottom: 3rem;
-    color: #333;
-    font-size: 1em;
   }
 
-  .project-detail-features {
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    color: #333;
+  .sidebar-box {
+    border: 2px solid var(--text-main);
+    padding: 2rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    box-shadow: 6px 6px 0px var(--text-main);
   }
 
-  .project-detail-features h3 {
-    font-size: 1em;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    color: #000;
+  .sidebar-box.accent {
+    background: var(--accent);
+    box-shadow: 6px 6px 0px var(--text-main);
   }
 
-  .project-detail-features ul {
+  .sidebar-box h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    border-bottom: 1px solid rgba(26, 44, 56, 0.2);
+    padding-bottom: 0.5rem;
+  }
+
+  .sidebar-box ul {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
   }
 
-  .project-detail-features li {
-    margin-bottom: 0.5rem;
-    font-size: 0.9em;
+  .sidebar-box li {
+    margin-bottom: 0.8rem;
+    font-size: 0.95em;
+    font-family: var(--font-body);
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .sidebar-box li::before {
+    content: "→";
+    color: var(--text-muted);
+    font-weight: 800;
   }
 
   .project-detail-links {
     display: flex;
-    gap: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 4rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
   }
 
-  .btn {
-    background: none;
-    border: none;
-    font-family: var(--mono);
-    font-size: 0.9em;
-    color: #666;
+  .btn-retro {
+    background: var(--text-main);
+    color: var(--bg-color);
+    padding: 1rem 2rem;
     text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    position: relative;
-    padding: 0.2rem 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 4px 4px 0px var(--accent);
+    transition: all 0.2s ease;
   }
 
-  .btn:hover {
-    color: #000;
+  .btn-retro:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--accent);
   }
 
-  .btn-primary {
-    color: #000;
-    border-bottom: 1px solid #000;
-    padding-bottom: 0.2rem;
+  .social-button {
+    padding: 1rem 2rem;
+    border: 2px solid var(--text-main);
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+
+  .social-button:hover {
+    background: var(--accent);
+  }
+
+  .back-link-container {
+    border-top: 2px solid var(--text-main);
+    padding-top: 3rem;
   }
 
   .back-link {
-    margin-top: 4rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .project-detail-title {
+      font-size: 2.5rem;
+    }
+    .project-body-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 </style>

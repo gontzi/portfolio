@@ -1,5 +1,5 @@
 ---
-import portfolioData from '../data/portfolio.json';
+import portfolioData from "../data/portfolio.json";
 const { contact, personal } = portfolioData;
 ---
 
@@ -9,35 +9,41 @@ const { contact, personal } = portfolioData;
       <h2 class="section-title">{contact.title}</h2>
       <div class="section-content">
         <p class="contact-message fade-in">{contact.message}</p>
-        <a href={`mailto:${personal.email}`} class="contact-email fade-in"
-          >{personal.email}</a
-        >
 
-        <!-- Contenedor para el botón de Google Calendar -->
-        <div class="google-calendar-container fade-in">
-          <div id="google-calendar-button"></div>
+        <div class="contact-details">
+          <a href={`mailto:${personal.email}`} class="contact-email fade-in"
+            >{personal.email}</a
+          >
+
+          <div class="google-calendar-container fade-in">
+            <div id="google-calendar-button"></div>
+          </div>
+
+          <p class="calendar-fallback fade-in">
+            ¿Problemas con el calendario?
+            <a
+              href="https://lalo.lol/reservas"
+              target="_blank"
+              class="fallback-link">Usa este enlace directo</a
+            >
+          </p>
         </div>
 
-        <!-- Texto alternativo para el calendario -->
-        <p class="calendar-fallback fade-in text-xs">
-          Si no ves correctamente el contenido,
-          <a
-            href="https://lalo.lol/reservas"
-            target="_blank"
-            class="fallback-link">haz click aquí</a
-          >.
-        </p>
-
-        <div class="contact-social fade-in">
-          <a href={personal.social.linkedin} target="_blank" class="social-link"
-            >LinkedIn</a
-          >
-          <a href={personal.social.github} target="_blank" class="social-link"
-            >GitHub</a
-          >
-          <a href={personal.social.malt} target="_blank" class="social-link"
-            >Malt</a
-          >
+        <div class="contact-social-box fade-in">
+          <h4 class="social-label">Encuéntrame en:</h4>
+          <div class="contact-social">
+            <a
+              href={personal.social.linkedin}
+              target="_blank"
+              class="social-link">LinkedIn</a
+            >
+            <a href={personal.social.github} target="_blank" class="social-link"
+              >GitHub</a
+            >
+            <a href={personal.social.malt} target="_blank" class="social-link"
+              >Malt</a
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -46,78 +52,109 @@ const { contact, personal } = portfolioData;
 
 <style>
   .contact-message {
-    font-size: 1.1em;
-    color: #333;
+    font-size: 1.5em;
+    font-family: var(--font-heading);
+    color: var(--text-main);
     margin-bottom: 3rem;
+    line-height: 1.4;
+  }
+
+  .contact-details {
+    margin-bottom: 4rem;
   }
 
   .contact-email {
-    font-size: 1.2em;
-    color: #000;
-    text-decoration: none;
+    font-size: 2em;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 8px;
     margin-bottom: 3rem;
     display: inline-block;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .contact-email:hover {
-    color: #666;
+    color: var(--accent);
+    text-decoration-color: var(--text-main);
   }
 
   .google-calendar-container {
-    margin-bottom: 1rem; /* Reducido para dar espacio al texto alternativo */
+    margin-bottom: 1.5rem;
     display: flex;
     justify-content: flex-start;
   }
 
-  /* Estilos para el texto alternativo del calendario */
   .calendar-fallback {
-    color: #888;
+    color: var(--text-muted);
+    font-size: 0.85em;
     margin-bottom: 3rem;
-    text-align: left;
+    font-family: var(--font-body);
   }
 
   .fallback-link {
-    color: #666;
+    color: var(--text-main);
+    font-weight: 600;
     text-decoration: underline;
-    transition: color 0.3s ease;
   }
 
-  .fallback-link:hover {
-    color: #333;
-    text-decoration: none;
+  .contact-social-box {
+    border-top: 2px solid var(--text-main);
+    padding-top: 2rem;
+  }
+
+  .social-label {
+    font-family: var(--font-body);
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
   }
 
   .contact-social {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
   }
 
   .social-link {
-    color: #666;
+    color: var(--text-main);
     text-decoration: none;
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: var(--font-body);
     transition: color 0.3s ease;
+    position: relative;
   }
 
-  .social-link:hover {
-    color: #000;
+  .social-link::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .social-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   @media (max-width: 768px) {
-    .google-calendar-container {
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    .calendar-fallback {
-      text-align: center;
-      margin-bottom: 2rem;
+    .contact-email {
+      font-size: 1.25em;
     }
 
     .contact-social {
-      flex-direction: column;
-      gap: 1rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
   }
 </style>
@@ -132,68 +169,42 @@ const { contact, personal } = portfolioData;
   async></script>
 <script>
   (function () {
-    window.addEventListener('load', function () {
+    window.addEventListener("load", function () {
+      // @ts-ignore
       calendar.schedulingButton.load({
-        url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1QF1BIcez4Jt9OWjC8hrZd7a34UfemQncXGpb1P-g7RRPvegXfnJFlihzR-x_ujcx68apg_LlY?gv=true',
-        color: '#333333',
-        label: 'Reservar una cita',
-        target: document.getElementById('google-calendar-button'),
+        url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1QF1BIcez4Jt9OWjC8hrZd7a34UfemQncXGpb1P-g7RRPvegXfnJFlihzR-x_ujcx68apg_LlY?gv=true",
+        color: "#1A2C38", // Navy
+        label: "Reservar una cita",
+        target: document.getElementById("google-calendar-button"),
       });
 
-      // Aplicamos estilos personalizados después de que el botón se genere
       setTimeout(() => {
-        const container = document.getElementById('google-calendar-button');
+        const container = document.getElementById("google-calendar-button");
         if (container && container.nextElementSibling) {
-          const button = container.nextElementSibling;
+          const button = container.nextElementSibling as HTMLElement;
 
-          // Estilos base aplicados directamente en línea
-          button.style.backgroundColor = 'transparent';
-          button.style.color = '#333';
-          button.style.border = '1px solid #e0e0e0';
-          button.style.padding = '16px 32px';
-          button.style.fontSize = '0.95em';
-          button.style.textDecoration = 'none';
-          button.style.display = 'inline-block';
-          button.style.transition = 'all 0.3s ease';
-          button.style.borderRadius = '0';
-          button.style.cursor = 'pointer';
-          button.style.fontFamily = 'inherit';
-          button.style.fontWeight = '400';
-          button.style.letterSpacing = '0.5px';
-          button.style.minWidth = '180px';
-          button.style.textAlign = 'center';
+          button.style.backgroundColor = "#1A2C38"; // Navy
+          button.style.color = "#F3F0E7"; // Cream
+          button.style.border = "2px solid #1A2C38";
+          button.style.padding = "16px 32px";
+          button.style.fontSize = "0.9em";
+          button.style.textTransform = "uppercase";
+          button.style.fontWeight = "700";
+          button.style.borderRadius = "4px";
+          button.style.boxShadow = "4px 4px 0px #E3A83F"; // Mustard shadow
+          button.style.transition = "all 0.2s ease";
 
-          // Eventos para hover effect (ya que CSS no funciona)
-          button.addEventListener('mouseenter', () => {
-            button.style.backgroundColor = '#f8f8f8';
-            button.style.borderColor = '#333';
-            button.style.color = '#000';
-            button.style.transform = 'translateY(-2px)';
-            button.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+          button.addEventListener("mouseenter", () => {
+            button.style.transform = "translate(2px, 2px)";
+            button.style.boxShadow = "2px 2px 0px #E3A83F";
           });
 
-          button.addEventListener('mouseleave', () => {
-            button.style.backgroundColor = 'transparent';
-            button.style.borderColor = '#e0e0e0';
-            button.style.color = '#333';
-            button.style.transform = 'none';
-            button.style.boxShadow = 'none';
-          });
-
-          button.addEventListener('mousedown', () => {
-            button.style.transform = 'translateY(0)';
-            button.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
-          });
-
-          button.addEventListener('mouseup', () => {
-            if (button.matches(':hover')) {
-              button.style.transform = 'translateY(-2px)';
-              button.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            }
+          button.addEventListener("mouseleave", () => {
+            button.style.transform = "translate(0, 0)";
+            button.style.boxShadow = "4px 4px 0px #E3A83F";
           });
         }
-      }, 300); // Esperamos 300ms para que el botón se genere
+      }, 500);
     });
   })();
 </script>
-<!-- end Google Calendar Appointment Scheduling -->
