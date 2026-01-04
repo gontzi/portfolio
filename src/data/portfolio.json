@@ -6,16 +6,28 @@
     "tagline": "Combinando código y diseño para crear experiencias con estilo y cabeza.",
     "email": "azldgi03@gmail.com",
     "social": {
-      "linkedin": "https://lalo.lol/in",
-      "github": "https://lalo.lol/gh",
-      "malt": "https://lalo.lol/malt"
+      "linkedin": "https://ka0s.site/in",
+      "github": "https://ka0s.site/gh",
+      "malt": "https://ka0s.site/malt"
     }
   },
   "navigation": [
-    { "label": "Sobre mí", "target": "about" },
-    { "label": "Trabajos", "target": "work" },
-    { "label": "Experiencia", "target": "experience" },
-    { "label": "Contacto", "target": "contact" }
+    {
+      "label": "Sobre mí",
+      "target": "about"
+    },
+    {
+      "label": "Trabajos",
+      "target": "work"
+    },
+    {
+      "label": "Experiencia",
+      "target": "experience"
+    },
+    {
+      "label": "Contacto",
+      "target": "contact"
+    }
   ],
   "about": {
     "title": "Sobre mí",
@@ -52,7 +64,11 @@
           "SEO bien pulido para destacar en buscadores",
           "Identidad visual profesional y coherente"
         ],
-        "metrics": ["FCP: 0.7s", "LCP: 1.2s", "CLS: 0.003"],
+        "metrics": [
+          "FCP: 0.7s",
+          "LCP: 1.2s",
+          "CLS: 0.003"
+        ],
         "liveUrl": "https://hearinit.com",
         "githubUrl": "",
         "metricUrl": "https://pagespeed.web.dev/analysis/https-hearinit-com/ysrvdeph6p?form_factor=desktop"
@@ -91,7 +107,11 @@
           "Formulario de contacto integrado",
           "Sección de blog para novedades y promos"
         ],
-        "metrics": ["FCP: 0.3s", "LCP: 0.5s", "CLS: 0"],
+        "metrics": [
+          "FCP: 0.3s",
+          "LCP: 0.5s",
+          "CLS: 0"
+        ],
         "liveUrl": "https://bite-and-smash.tunuevaweb.es/",
         "githubUrl": "https://github.com/tunuevaweb/bite-and-smash",
         "metricUrl": "https://pagespeed.web.dev/analysis/https-bite-and-smash-tunuevaweb-es/fnvldvriqp?form_factor=desktop"
@@ -109,7 +129,11 @@
           "Gestión de errores y logs integrados",
           "Conexión fluida con APIs externas"
         ],
-        "metrics": ["FCP: 0.7s", "LCP: 0.7s", "CLS: 0.024"],
+        "metrics": [
+          "FCP: 0.7s",
+          "LCP: 0.7s",
+          "CLS: 0.024"
+        ],
         "liveUrl": "https://web.tunuevosoftware.com",
         "githubUrl": "",
         "metricUrl": "https://pagespeed.web.dev/analysis/https-tunuevaweb-es/31yv2df4k7?form_factor=desktop"
