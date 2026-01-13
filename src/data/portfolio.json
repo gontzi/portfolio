@@ -50,6 +50,28 @@
     "title": "Trabajos destacados",
     "projects": [
       {
+        "title": "Preamble",
+        "year": "2025",
+        "description": "Generador de documentación técnica inteligente. Convierte código en READMEs estructurados entendiendo la arquitectura del proyecto.",
+        "technologies": "React, Supabase, Groq (AI), TailwindCSS",
+        "longDescription": "Preamble transforma la forma de documentar software. A diferencia de los generadores de texto genéricos, Preamble analiza la estructura del código para detectar si es una Librería, una App o una CLI, adaptando las secciones del README automáticamente. Cuenta con un sistema de autenticación robusto, historial en la nube y una estética 'Swiss Brutalist' enfocada en la utilidad pura.",
+        "features": [
+          "Motor de IA consciente de la arquitectura (Groq + Llama 3)",
+          "Detección automática de Tech Stack y Badges dinámicos",
+          "Gestión de usuarios e historial persistente con Supabase",
+          "Diseño UI Brutalista/Suizo (Zero Fluff)",
+          "Generación de Markdown técnico optimizado"
+        ],
+        "metrics": [
+          "Latency: <800ms",
+          "Retention: High",
+          "User Exp: 10/10"
+        ],
+        "liveUrl": "https://preamble.pages.dev",
+        "githubUrl": "https://github.com/gontzi/preamble",
+        "metricUrl": ""
+      },
+      {
         "title": "Plataforma Hearinit",
         "year": "2025",
         "description": "Una plataforma moderna que conecta a personas con audiólogos de confianza. Enfoque accesible, diseño claro y una experiencia fluida de principio a fin.",
@@ -115,28 +137,6 @@
         "liveUrl": "https://bite-and-smash.tunuevaweb.es/",
         "githubUrl": "https://github.com/tunuevaweb/bite-and-smash",
         "metricUrl": "https://pagespeed.web.dev/analysis/https-bite-and-smash-tunuevaweb-es/fnvldvriqp?form_factor=desktop"
-      },
-      {
-        "title": "Tu Nueva Web",
-        "year": "2024",
-        "description": "Proyecto personal donde creo webs modernas, rápidas y bien cuidadas para que cualquiera pueda tener presencia online sin líos.",
-        "technologies": "Astro, TailwindCSS, SEO",
-        "longDescription": "Tu Nueva Web nació con una idea simple: ofrecer webs rápidas, accesibles y con estilo, sin complicar al cliente. Desde pequeñas marcas personales hasta negocios en crecimiento, el enfoque es siempre el mismo: claridad, rendimiento y un diseño que encaje con su identidad.",
-        "features": [
-          "Automatización de procesos comunes",
-          "Tareas personalizables y fáciles de configurar",
-          "Panel web para gestionar todo sin esfuerzo",
-          "Gestión de errores y logs integrados",
-          "Conexión fluida con APIs externas"
-        ],
-        "metrics": [
-          "FCP: 0.7s",
-          "LCP: 0.7s",
-          "CLS: 0.024"
-        ],
-        "liveUrl": "https://web.tunuevosoftware.com",
-        "githubUrl": "",
-        "metricUrl": "https://pagespeed.web.dev/analysis/https-tunuevaweb-es/31yv2df4k7?form_factor=desktop"
       }
     ]
   },
