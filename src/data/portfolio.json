@@ -50,6 +50,27 @@
     "title": "Trabajos destacados",
     "projects": [
       {
+        "title": "Pidemelo.app",
+        "year": "2026",
+        "description": "El tablón de anuncios de toda la vida, pero en fino. Un gestor de feedback sincero para centralizar las peticiones de los usuarios.",
+        "technologies": "Next.js, Tailwind CSS, Drizzle ORM, shadcn/ui",
+        "longDescription": "SaaS B2B minimalista diseñado para indie hackers y startups que huyen de herramientas corporativas lentas y caras. Permite capturar feedback sin registros pesados, organizar el roadmap en un Kanban público y priorizar el desarrollo mediante los votos de la comunidad. Destaca por su sistema de widgets aislados que permite a cualquier empresa incrustar el tablón en su propia web en un minuto.",
+        "features": [
+          "Gestión de sugerencias y sistema de votos con cero fricción para el usuario",
+          "Tablero Kanban de cara al público (Pendiente, Planeado, Completado)",
+          "Widgets modulares (Formulario y Tablón) incrustables vía iFrame",
+          "Sistema de etiquetas dinámicas con interfaz minimalista basada en tooltips",
+          "Escudo anti-spam con Rate Limiting dinámico por base de datos",
+          "Panel de administración responsive con experiencia de PWA nativa",
+          "Muros de pago integrados (ImageKit) para upselling pasivo",
+          "Suscripciones mensuales y Lifetime integradas"
+        ],
+        "metrics": [],
+        "liveUrl": "https://pidemelo.app",
+        "githubUrl": "",
+        "metricUrl": ""
+      },
+      {
         "title": "Preamble",
         "year": "2025",
         "description": "Generador de documentación técnica inteligente. Convierte código en READMEs estructurados entendiendo la arquitectura del proyecto.",
@@ -94,27 +115,6 @@
         "liveUrl": "https://hearinit.com",
         "githubUrl": "",
         "metricUrl": "https://pagespeed.web.dev/analysis/https-hearinit-com/ysrvdeph6p?form_factor=desktop"
-      },
-      {
-        "title": "Paquete NPM",
-        "year": "2025",
-        "description": "Una CLI para lanzar proyectos modernos con Vue + Tailwind o Astro + Tailwind sin perder tiempo. Un ‘npx’ y listo.",
-        "technologies": "Astro, TailwindCSS, Node",
-        "longDescription": "Creé un paquete NPM que te deja listo un entorno frontend moderno en segundos. Pensado para devs que no quieren perder media hora montando estructura. Incluye plantillas limpias, responsive, con todo preparado para empezar a desarrollar al instante.",
-        "features": [
-          "Arranca proyectos con Astro o Vue + Tailwind CSS",
-          "Diseño responsive y base minimalista desde el minuto uno",
-          "Arquitectura de archivos limpia y clara",
-          "Solo ejecuta 'npx create-azaldev-template' y a correr",
-          "Scripts listos para desarrollo y build",
-          "Integración directa con GitHub",
-          "Plantillas actuales y accesibles",
-          "Documentación pensada para no perder tiempo"
-        ],
-        "metrics": [],
-        "liveUrl": "https://docs-azaldev-template.azaldev.com/",
-        "githubUrl": "https://www.npmjs.com/package/create-azaldev-template",
-        "metricUrl": ""
       },
       {
         "title": "Bite & Smash",

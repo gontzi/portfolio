@@ -1,5 +1,5 @@
 ---
-const res = await fetch("https://devflow.azaldev.com/api/posts.json");
+const res = await fetch("https://refuge.azaldev.com/api/posts.json");
 const data = await res.json();
 const posts = data.latestPosts.slice(0, 3); // Solo los 3 últimos posts
 ---
@@ -11,7 +11,7 @@ const posts = data.latestPosts.slice(0, 3); // Solo los 3 últimos posts
       {
         posts.map((post) => (
           <a
-            href={`https://devflow.azaldev.com/blog/${post.slug}`}
+            href={`https://refuge.azaldev.com/blog/${post.slug}`}
             target="_blank"
             class="post-card fade-in"
           >
