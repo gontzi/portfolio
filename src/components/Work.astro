@@ -1,122 +1,104 @@
 ---
 import portfolioData from "../data/portfolio.json";
 const { work } = portfolioData;
-
-const createSlug = (title) => {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-};
+const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 ---
 
-<section id="work" class="section bg-alt">
+<section id="work" class="section section-alt">
   <div class="container">
-    <div class="section-grid">
-      <h2 class="section-title">{work.title}</h2>
-      <div class="section-content">
-        {
-          work.projects.map((project) => (
-            <a
-              href={`/work/${createSlug(project.title)}`}
-              class="project fade-in"
-            >
-              <div class="project-header">
-                <h3 class="project-title">{project.title}</h3>
-                <span class="project-year">{project.year}</span>
-              </div>
-              <p class="project-description">{project.description}</p>
-              <div class="project-tech">{project.technologies}</div>
-            </a>
-          ))
-        }
-      </div>
+    <div class="section-head fade-in">
+      <span class="section-head-dot"></span>
+      <span class="section-head-label">{work.title}</span>
+      <span class="section-head-scribble">
+        <svg viewBox="0 0 160 10"><use href="#scribble"/></svg>
+      </span>
+    </div>
+    <p class="work-intro fade-in">{work.description}</p>
+    <div class="work-grid">
+      {work.projects.map(p => (
+        <a href={`/work/${slug(p.title)}`} class="work-card fade-in">
+          <div class="work-card-accent"></div>
+          <div class="work-card-body">
+            <div class="work-card-head">
+              <h3 class="work-card-title">{p.title}</h3>
+              <span class="work-card-year">{p.year}</span>
+            </div>
+            <p class="work-card-desc">{p.description}</p>
+            <span class="work-card-more">
+              Ver proyecto
+              <svg class="work-arrow" width="14" height="10" viewBox="0 0 14 10" fill="none">
+                <path d="M1 5h10M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-  .project {
-    display: block;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    border: 2px solid transparent;
-    border-bottom: 2px solid rgba(26, 44, 56, 0.1);
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    background: transparent;
+  .work-intro { font-size: 1rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 50ch; line-height: 1.6; }
+
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+
+  .work-card {
+    display: flex; flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    text-decoration: none; color: inherit;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
   }
 
-  .project:last-child {
-    margin-bottom: 0;
+  .work-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
   }
 
-  /* Retro card hover effect */
-  .project:hover {
-    border: 2px solid var(--text-main);
-    background-color: var(--bg-color);
-    box-shadow: 6px 6px 0px var(--accent);
-    transform: translate(-2px, -2px);
-  }
+  .work-card-accent { height: 4px; background: var(--accent); flex-shrink: 0; }
 
-  .project-header {
+  .work-card-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+
+  .work-card-head {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.65rem;
   }
 
-  .project-title {
-    font-size: 1.5em;
-    font-family: var(--font-heading);
-    color: var(--text-main);
-    transition: color 0.3s ease;
-  }
+  .work-card-title { font-size: 1.3rem; font-weight: 700; transition: color 0.3s ease; }
+  .work-card:hover .work-card-title { color: var(--accent); }
 
-  .project-year {
-    color: var(--accent);
-    font-weight: 700;
-    font-family: var(--font-body);
-    font-size: 0.9em;
-  }
+  .work-card-year { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
 
-  .project-description {
+  .work-card-desc {
+    font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.6;
+    flex: 1;
     margin-bottom: 1rem;
-    font-size: 1em;
   }
 
-  .project-tech {
-    color: var(--text-main);
-    font-family: var(--font-body);
-    font-size: 0.8em;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    opacity: 0.8;
+  .work-card-more {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
+
+  .work-arrow { transition: transform 0.25s ease; }
+  .work-card:hover .work-arrow { transform: translateX(4px); }
 
   @media (max-width: 768px) {
-    .project {
-      padding: 1.25rem 1rem;
-      border: 2px solid var(--text-main); /* Force border on mobile for app look */
-      box-shadow: 4px 4px 0px var(--accent);
-      background-color: var(--bg-color);
-      margin-bottom: 1.5rem;
-    }
-
-    .project-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.25rem;
-      margin-bottom: 1rem;
-    }
-
-    .project-title {
-      font-size: 1.35em;
-    }
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card-body { padding: 1.25rem; }
+    .work-card-title { font-size: 1.1rem; }
   }
 </style>

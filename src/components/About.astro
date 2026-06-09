@@ -5,78 +5,37 @@ const { about } = portfolioData;
 
 <section id="about" class="section">
   <div class="container">
-    <div class="section-grid">
-      <h2 class="section-title">{about.title}</h2>
-      <div class="section-content">
-        {
-          about.paragraphs.map((paragraph) => (
-            <p class="fade-in">{paragraph}</p>
-          ))
-        }
-        <div class="tech-grid">
-          {
-            about.technologies.map((tech) => (
-              <div class="tech-item fade-in">
-                <span class="tech-dot" />
-                {tech}
-              </div>
-            ))
-          }
-        </div>
-      </div>
+    <div class="section-head fade-in">
+      <span class="section-head-dot"></span>
+      <span class="section-head-label">{about.title}</span>
+      <span class="section-head-scribble">
+        <svg viewBox="0 0 160 10"><use href="#scribble"/></svg>
+      </span>
+    </div>
+    {about.paragraphs.map((p, i) => (
+      <p class="about-text fade-in" style={`transition-delay: ${i * 0.12}s`}>{p}</p>
+    ))}
+    <div class="about-tech fade-in">
+      {about.technologies.map(t => <span class="tech-tag">{t}</span>)}
     </div>
   </div>
 </section>
 
 <style>
-  .tech-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 3rem;
-  }
+  .about-text { font-size: 1.05rem; line-height: 1.75; max-width: 58ch; margin-bottom: 1.5rem; color: var(--text); }
+  .about-text:last-of-type { margin-bottom: 0; }
 
-  .tech-item {
-    padding: 0.5rem 1rem;
-    background: transparent;
-    border: 1px solid var(--text-main);
-    color: var(--text-main);
-    font-family: var(--font-body);
-    font-size: 0.85em;
+  .about-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+
+  .tech-tag {
+    padding: 0.35rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.8rem;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    border-radius: 2px;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
   }
 
-  .tech-item:hover {
-    background: var(--text-main);
-    color: var(--bg-color);
-    transform: translateY(-2px);
-  }
-
-  .tech-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--accent);
-    border-radius: 50%;
-  }
-
-  .tech-item:hover .tech-dot {
-    background-color: var(--bg-color);
-  }
-  @media (max-width: 768px) {
-    .tech-grid {
-      gap: 0.75rem;
-      margin-top: 2rem;
-    }
-    .tech-item {
-      padding: 0.4rem 0.75rem;
-      font-size: 0.8em;
-    }
-  }
+  .tech-tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 </style>

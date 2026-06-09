@@ -5,388 +5,72 @@ const { personal, navigation } = portfolioData;
 
 <nav class="nav" id="navbar">
   <div class="container">
-    <div class="nav-content">
+    <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/logo.svg" alt="Logo" class="logo-img" />
-        <span class="logo-text">{personal.name}</span>
+        <img src="/me.png" alt="Gonzalo" class="nav-logo-img" />
+        <span class="nav-logo-text">{personal.name}</span>
       </a>
-
-      <!-- Desktop Links -->
-      <ul class="nav-links desktop-only">
-        {
-          navigation.map((item) => (
-            <li>
-              <a href={`#${item.target}`} class="nav-link">
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-
-      <!-- Mobile Toggle -->
-      <button
-        class="menu-toggle mobile-only"
-        id="mobile-menu-toggle"
-        aria-label="Abra el menú"
-      >
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
+      <div class="nav-right">
+        <ul class="nav-links">
+          {navigation.map(item => (
+            <li><a href={`#${item.target}`} class="nav-link">{item.label}</a></li>
+          ))}
+        </ul>
+        <a href={personal.social.linkedin} target="_blank" class="nav-cta">LinkedIn</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menú">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
 
-<!-- Mobile Overlay Menu -->
-<div class="mobile-overlay" id="mobile-overlay">
-  <button class="close-menu" id="close-menu" aria-label="Cerrar el menú"
-    >&times;</button
-  >
-  <div class="overlay-content">
-    <nav class="overlay-nav">
-      {
-        navigation.map((item) => (
-          <a href={`#${item.target}`} class="overlay-link">
-            <span class="link-label">{item.label}</span>
-            <span class="link-arrow">→</span>
-          </a>
-        ))
-      }
-    </nav>
-    <div class="overlay-footer">
-      <p>{personal.location}</p>
-      <div class="overlay-socials">
-        <a href={personal.social.linkedin} target="_blank">LI</a>
-        <a href={personal.social.github} target="_blank">GH</a>
-      </div>
-    </div>
-  </div>
+<div class="mobile-menu" id="mobile-menu">
+  <nav class="mobile-nav">
+    {navigation.map(item => (
+      <a href={`#${item.target}`} class="mobile-link">{item.label}</a>
+    ))}
+    <a href={personal.social.linkedin} target="_blank" class="mobile-link mobile-link-accent">LinkedIn</a>
+  </nav>
 </div>
 
 <style>
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
-    z-index: 1000;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    padding: 1.5rem 0;
-  }
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 0; transition: all 0.3s; }
+  .nav.scrolled { background: rgba(255,248,240,0.92); backdrop-filter: blur(8px); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+  .nav-logo-img { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--border); object-fit: cover; }
+  .nav-logo-text { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-links { display: flex; list-style: none; gap: 0.25rem; }
+  .nav-link { padding: 0.4rem 0.8rem; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); border-radius: 8px; transition: all 0.2s; }
+  .nav-link:hover { color: var(--text); background: var(--accent-soft); }
+  .nav-cta { padding: 0.4rem 1.2rem; font-size: 0.85rem; font-weight: 600; background: var(--accent); color: #fff; border-radius: 8px; transition: all 0.2s ease; }
+  .nav-cta:hover { background: #5a8dc4; border-color: #5a8dc4; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+  .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { transform: rotate(-45deg); }
 
-  /* Floating Dock Effect on PC */
-  @media (min-width: 769px) {
-    .nav.scrolled {
-      padding: 0.8rem 0;
-    }
-
-    .nav.scrolled .nav-content {
-      padding: 0.6rem 3rem;
-      box-shadow: 4px 4px 0px var(--accent);
-      transform: scale(0.98);
-    }
-
-    .nav-content {
-      background: var(--bg-color);
-      border: 2px solid var(--text-main);
-      box-shadow: 8px 8px 0px var(--text-main);
-      border-radius: 100px;
-      padding: 0.8rem 5rem;
-      max-width: fit-content;
-      margin: 0 auto;
-      gap: 3rem; /* Adjusted gap */
-      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  /* Structural base for all states */
-  .nav-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    line-height: 1; /* Prevent logo/text height shift */
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--text-main);
-    text-decoration: none;
-    z-index: 1100;
-  }
-
-  .logo-img {
-    height: 38px;
-    width: auto;
-    border: 1.5px solid var(--text-main);
-    border-radius: 50%;
-    background: var(--bg-color);
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 1.5rem; /* More compact links */
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-link {
-    white-space: nowrap; /* Prevent "Sobre mí" from wrapping */
-    color: var(--text-main);
-    font-family: var(--font-body);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.8rem;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    padding: 0.5rem 1.2rem;
-    border-radius: 50px;
-    border: 1px solid transparent;
-    display: block; /* Ensure text is centered in padding */
-    line-height: normal;
-  }
-
-  .nav-link:hover {
-    background: var(--text-main);
-    color: var(--bg-color);
-    transform: translateY(-2px);
-  }
-
-  /* Remove underline from original design */
-  .nav-link::after {
-    display: none;
-  }
-
-  /* Mobile Toggle Styles */
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1100;
-  }
-
-  .bar {
-    width: 24px;
-    height: 2px;
-    background-color: var(--text-main);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .mobile-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-color);
-    z-index: 1050;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 2rem;
-  }
-
-  .mobile-overlay.active {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-  }
-
-  .close-menu {
-    position: absolute;
-    top: 1.5rem;
-    right: 2rem;
-    background: none;
-    border: none;
-    font-size: 3rem;
-    color: var(--text-main);
-    cursor: pointer;
-    line-height: 1;
-    padding: 0.5rem;
-  }
-
-  .overlay-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding-top: 6rem;
-  }
-
-  .overlay-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    flex-grow: 1;
-  }
-
-  .overlay-link {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    color: var(--text-main);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(26, 44, 56, 0.1);
-    padding-bottom: 1rem;
-    text-decoration: none;
-  }
-
-  .link-arrow {
-    color: var(--accent);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.3s ease;
-  }
-
-  .overlay-link:active .link-arrow {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .overlay-footer {
-    margin-top: auto;
-    padding-top: 2rem;
-    color: var(--text-muted);
-    font-family: var(--font-body);
-    font-size: 0.9em;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  .overlay-socials {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .overlay-socials a {
-    font-weight: 800;
-    color: var(--text-main);
-  }
-
-  /* Utilities */
-  .desktop-only {
-    display: flex;
-  }
-  .mobile-only {
-    display: none;
-  }
+  .mobile-menu { display: none; }
 
   @media (max-width: 768px) {
-    .desktop-only {
-      display: none;
-    }
-    .mobile-only {
-      display: flex;
-    }
-
-    .logo-text {
-      font-size: 1.25rem;
-    }
-
-    /* Animate hamburger to X */
-    .menu-toggle.active .bar:nth-child(1) {
-      transform: translateY(4px) rotate(45deg);
-    }
-    .menu-toggle.active .bar:nth-child(2) {
-      transform: translateY(-4px) rotate(-45deg);
-    }
-
-    /* Lock scroll when menu open */
-    :global(body.menu-open) {
-      overflow: hidden;
-    }
-
-    .mobile-overlay {
-      padding-top: env(safe-area-inset-top);
-    }
-
-    .overlay-link {
-      font-size: 2.2rem; /* Better scale for mobile */
-      padding: 1.25rem 0;
-      transform: translateX(-20px);
-      opacity: 0;
-      transition: all 0.4s ease;
-    }
-
-    .mobile-overlay.active .overlay-link {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    /* Staggered animation for links */
-    .mobile-overlay.active .overlay-link:nth-child(1) {
-      transition-delay: 0.1s;
-    }
-    .mobile-overlay.active .overlay-link:nth-child(2) {
-      transition-delay: 0.2s;
-    }
-    .mobile-overlay.active .overlay-link:nth-child(3) {
-      transition-delay: 0.3s;
-    }
-    .mobile-overlay.active .overlay-link:nth-child(4) {
-      transition-delay: 0.4s;
-    }
-
-    .close-menu {
-      top: calc(1.5rem + env(safe-area-inset-top));
-      font-weight: 300;
-      transition: transform 0.3s ease;
-    }
-
-    .close-menu:active {
-      transform: scale(0.9) rotate(90deg);
-    }
+    .nav-links, .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: flex; position: fixed; inset: 0; background: var(--bg); z-index: 99; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; }
+    .mobile-menu.open { opacity: 1; visibility: visible; }
+    .mobile-nav { display: flex; flex-direction: column; gap: 1.5rem; text-align: center; }
+    .mobile-link { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--text); }
+    .mobile-link-accent { color: var(--accent); }
   }
 </style>
 
 <script>
-  const toggle = document.getElementById("mobile-menu-toggle");
-  const closeBtn = document.getElementById("close-menu");
-  const overlay = document.getElementById("mobile-overlay");
-  const links = document.querySelectorAll(".overlay-link");
-
-  function toggleMenu() {
-    toggle?.classList.toggle("active");
-    overlay?.classList.toggle("active");
-    document.body.classList.toggle("menu-open");
+  document.getElementById("navbar")?.classList.toggle("scrolled", window.scrollY > 40);
+  window.addEventListener("scroll", () => document.getElementById("navbar")?.classList.toggle("scrolled", window.scrollY > 40));
+  const t = document.getElementById("menu-toggle"), m = document.getElementById("mobile-menu");
+  if (t && m) {
+    t.addEventListener("click", () => { t.classList.toggle("active"); m.classList.toggle("open"); document.body.style.overflow = m.classList.contains("open") ? "hidden" : ""; });
+    m.querySelectorAll("a").forEach(l => l.addEventListener("click", () => { t.classList.remove("active"); m.classList.remove("open"); document.body.style.overflow = ""; }));
   }
-
-  if (toggle && overlay) {
-    toggle.addEventListener("click", toggleMenu);
-    closeBtn?.addEventListener("click", toggleMenu);
-
-    links.forEach((link) => {
-      link.addEventListener("click", () => {
-        toggle.classList.remove("active");
-        overlay.classList.remove("active");
-        document.body.classList.remove("menu-open");
-      });
-    });
-  }
-
-  // Scroll effect for the Dock
-  const nav = document.getElementById("navbar");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      nav?.classList.add("scrolled");
-    } else {
-      nav?.classList.remove("scrolled");
-    }
-  });
 </script>

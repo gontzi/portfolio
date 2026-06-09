@@ -5,65 +5,33 @@ const { contact, personal } = portfolioData;
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-content fade-in">
-      <div class="footer-logo">
-        <img src="/logo.svg" alt="Logo" class="footer-logo-img" />
-        {personal.name}
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="/me.png" alt="Gonzalo" class="footer-logo" />
+        <span class="footer-name">{personal.name}</span>
       </div>
-      <p class="footer-text">{contact.footer}</p>
-      <div class="footer-year">
-        Built with <span class="retro-heart">❤</span> Retro Style
+      <div class="footer-right">
+        <span class="footer-text">{contact.footer}</span>
+        <span class="footer-year">&copy; {new Date().getFullYear()}</span>
       </div>
     </div>
   </div>
 </footer>
 
 <style>
-  .footer {
-    padding: 6rem 0 4rem;
-    border-top: 2px solid var(--text-main);
-    background-color: var(--bg-color);
-    text-align: center;
-  }
+  .footer { padding: 3rem 0; border-top: 1px solid var(--border); }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
 
-  .footer-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--text-main);
-    margin-bottom: 1rem;
-  }
+  .footer-left { display: flex; align-items: center; gap: 0.6rem; }
+  .footer-logo { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); object-fit: cover; }
+  .footer-name { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
 
-  .footer-logo-img {
-    height: 60px;
-    width: auto;
-    border: 2px solid var(--text-main);
-    border-radius: 50%;
-    background: var(--bg-color);
-  }
+  .footer-right { display: flex; align-items: center; gap: 1.5rem; }
+  .footer-text { font-size: 0.8rem; color: var(--text-muted); font-style: italic; }
+  .footer-year { font-size: 0.75rem; color: var(--text-muted); }
 
-  .footer-text {
-    color: var(--text-muted);
-    font-size: 1.1em;
-    margin-bottom: 2rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .footer-year {
-    color: var(--text-main);
-    font-size: 0.85em;
-    font-family: var(--font-body);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .retro-heart {
-    color: var(--accent);
+  @media (max-width: 768px) {
+    .footer-inner { flex-direction: column; text-align: center; gap: 1rem; }
+    .footer-right { flex-direction: column; gap: 0.3rem; }
   }
 </style>

@@ -1,142 +1,95 @@
 {
   "personal": {
     "name": "Gonzalo Azaldegi",
-    "title": "Creative Developer",
-    "location": "España",
-    "tagline": "Combinando código y diseño para crear experiencias con estilo y cabeza.",
-    "email": "azldgi03@gmail.com",
+    "title": "Desarrollador Fullstack",
+    "location": "Getxo, Bilbao",
+    "tagline": "Java y Spring Boot en el backend, React y JavaScript en el front. Patrones de diseño, arquitectura limpia y obsesión por el código que escala.",
+    "email": "gontzidev@gmail.com",
     "social": {
-      "linkedin": "https://ka0s.site/in",
-      "github": "https://ka0s.site/gh",
-      "malt": "https://ka0s.site/malt"
+      "linkedin": "https://linkedin.com/in/gontzi",
+      "github": "https://github.com/gontzi",
+      "malt": "https://www.malt.es/profile/gonzaloazaldegi"
     }
   },
   "navigation": [
-    {
-      "label": "Sobre mí",
-      "target": "about"
-    },
-    {
-      "label": "Trabajos",
-      "target": "work"
-    },
-    {
-      "label": "Experiencia",
-      "target": "experience"
-    },
-    {
-      "label": "Contacto",
-      "target": "contact"
-    }
+    { "label": "Experiencia", "target": "experience" },
+    { "label": "Trabajos", "target": "work" },
+    { "label": "Contacto", "target": "contact" }
   ],
+  "hero": {
+    "availability": "Abierto a oportunidades",
+    "greeting": "Hola, soy",
+    "buttons": {
+      "linkedin": "Mi LinkedIn",
+      "experience": "Mi experiencia",
+      "contact": "Escríbeme"
+    }
+  },
   "about": {
     "title": "Sobre mí",
     "paragraphs": [
-      "Soy Gonzalo, desarrollador Full-Stack. Me gusta crear experiencias rápidas, limpias y que den gusto usar. Combino lo técnico con lo visual, buscando ese punto medio entre un buen rendimiento y un diseño que se sienta bien.",
-      "Soy fan del código limpio y de automatizar todo lo que pueda. Mi idea es simple: que las cosas funcionen bien, se vean bien y sean fáciles de mantener. Si puedo hacerte la vida más fácil con una web o app, voy por buen camino."
+      "Desarrollador Fullstack con base sólida en Java y Spring Boot, complementado con React y JavaScript en el frontend. Trabajo con arquitecturas limpias, patrones de diseño y orientación a objetos. Me obsesiona que el código sea mantenible, escalable y que no dé problemas a largo plazo.",
+      "Uso herramientas de IA en el día a día para automatizar pruebas, refactorizar código legacy y acelerar entregas sin perder calidad. He trabajado en entornos corporativos con Scrum y me adapto rápido a cualquier stack. Si es Java, mejor todavía."
     ],
-    "technologies": [
-      "Astro",
-      "Java",
-      "Vue.js",
-      "TailwindCSS",
-      "React",
-      "JavaScript",
-      "SQL",
-      "GitHub"
-    ]
+    "technologies": ["Java", "Spring Boot", "React", "JavaScript", "Astro", "Vue.js", "TailwindCSS", "SQL", "C#", "Git"]
   },
   "work": {
-    "title": "Trabajos destacados",
+    "title": "Trabajos",
+    "description": "Cada proyecto tiene su historia. Aquí van algunos de los que más orgulloso me siento.",
     "projects": [
       {
         "title": "Pidemelo.app",
         "year": "2026",
-        "description": "El tablón de anuncios de toda la vida, pero en fino. Un gestor de feedback sincero para centralizar las peticiones de los usuarios.",
+        "description": "SaaS de feedback para startups. Widgets embebibles, Kanban público, suscripciones y cero bullshit.",
         "technologies": "Next.js, Tailwind CSS, Drizzle ORM, shadcn/ui",
-        "longDescription": "SaaS B2B minimalista diseñado para indie hackers y startups que huyen de herramientas corporativas lentas y caras. Permite capturar feedback sin registros pesados, organizar el roadmap en un Kanban público y priorizar el desarrollo mediante los votos de la comunidad. Destaca por su sistema de widgets aislados que permite a cualquier empresa incrustar el tablón en su propia web en un minuto.",
+        "longDescription": "Me lancé a construir Pidemelo.app en solitario: desde la idea hasta tenerlo funcionando en producción. Es un SaaS donde los usuarios dejan feedback sin tener que registrarse, votan ideas y ves el roadmap en tiempo real. Tiene widgets que cualquier empresa puede embeber en su web en un minuto, un panel PWA y un sistema de suscripciones. Todo un proyecto de principio a fin, con usuarios reales usándolo.",
         "features": [
-          "Gestión de sugerencias y sistema de votos con cero fricción para el usuario",
-          "Tablero Kanban de cara al público (Pendiente, Planeado, Completado)",
-          "Widgets modulares (Formulario y Tablón) incrustables vía iFrame",
-          "Sistema de etiquetas dinámicas con interfaz minimalista basada en tooltips",
-          "Escudo anti-spam con Rate Limiting dinámico por base de datos",
-          "Panel de administración responsive con experiencia de PWA nativa",
-          "Muros de pago integrados (ImageKit) para upselling pasivo",
-          "Suscripciones mensuales y Lifetime integradas"
+          "Widgets modulares embebibles en cualquier web",
+          "Votación sin registro obligatorio",
+          "Rate limiting anti-spam",
+          "Panel administrable como PWA",
+          "Suscripciones mensuales y Lifetime"
         ],
-        "metrics": [],
+        "metrics": ["SaaS en producción con usuarios reales", "100% construido en solitario"],
         "liveUrl": "https://pidemelo.app",
-        "githubUrl": "",
+        "githubUrl": "https://github.com/gontzi/pidemelo",
         "metricUrl": ""
       },
       {
         "title": "Preamble",
         "year": "2025",
-        "description": "Generador de documentación técnica inteligente. Convierte código en READMEs estructurados entendiendo la arquitectura del proyecto.",
+        "description": "Generador de documentación con IA que entiende tu código y escribe READMEs por ti.",
         "technologies": "React, Supabase, Groq (AI), TailwindCSS",
-        "longDescription": "Preamble transforma la forma de documentar software. A diferencia de los generadores de texto genéricos, Preamble analiza la estructura del código para detectar si es una Librería, una App o una CLI, adaptando las secciones del README automáticamente. Cuenta con un sistema de autenticación robusto, historial en la nube y una estética 'Swiss Brutalist' enfocada en la utilidad pura.",
+        "longDescription": "A los desarrolladores nos da pereza documentar. Lo sé porque soy uno de ellos. Así que construí Preamble: dile tu repo, la IA analiza la estructura, detecta si es una app, librería o CLI, y genera un README completo. Tiene autenticación, historial en la nube y una estética Swiss Brutalist que enamora. Latencia menor a 800ms y una retención de usuarios que me sorprendió hasta a mí.",
         "features": [
-          "Motor de IA consciente de la arquitectura (Groq + Llama 3)",
-          "Detección automática de Tech Stack y Badges dinámicos",
-          "Gestión de usuarios e historial persistente con Supabase",
-          "Diseño UI Brutalista/Suizo (Zero Fluff)",
-          "Generación de Markdown técnico optimizado"
+          "IA que entiende la arquitectura del proyecto",
+          "Detección automática de tech stack",
+          "Historial persistente con Supabase",
+          "Diseño Swiss Brutalist sin concesiones",
+          "Markdown listo para publicar"
         ],
-        "metrics": [
-          "Latency: <800ms",
-          "Retention: High",
-          "User Exp: 10/10"
-        ],
+        "metrics": ["Latencia IA: &lt;800ms", "Retención alta", "Experiencia 10/10"],
         "liveUrl": "https://preamble.pages.dev",
         "githubUrl": "https://github.com/gontzi/preamble",
         "metricUrl": ""
       },
       {
-        "title": "Plataforma Hearinit",
+        "title": "Hearinit",
         "year": "2025",
-        "description": "Una plataforma moderna que conecta a personas con audiólogos de confianza. Enfoque accesible, diseño claro y una experiencia fluida de principio a fin.",
-        "technologies": "Astro, TailwindCSS, CMS Integration",
-        "longDescription": "Hearinit conecta a usuarios con profesionales auditivos de forma simple y directa. Todo gira en torno a la accesibilidad y la facilidad de uso: navegación clara, soporte personalizado y una interfaz cuidada. El objetivo era que cualquier persona, sin importar su experiencia digital, pudiera moverse sin esfuerzo por la plataforma.",
+        "description": "Plataforma que conecta pacientes con audiólogos. Accesible, rápida y pensada para todos.",
+        "technologies": "React, JavaScript, TailwindCSS, REST APIs",
+        "longDescription": "Diseñé y desarrollé Hearinit desde cero, definiendo la arquitectura fullstack e integrando componentes dinámicos con React y JavaScript. Implementé un buscador por ubicación y especialidad, área de recursos y comparador de productos. El enfoque principal fue la estabilidad, el rendimiento y la accesibilidad para un público mayor con poca experiencia digital.",
         "features": [
-          "Diseño adaptable a cualquier dispositivo",
-          "Interfaz clara y sin distracciones",
-          "Formularios fáciles para pedir cita o contactar",
-          "Carga ultrarrápida y rendimiento optimizado",
-          "Mapa integrado para encontrar centros cercanos",
-          "SEO bien pulido para destacar en buscadores",
-          "Identidad visual profesional y coherente"
+          "Buscador por ubicación y especialidad",
+          "Comparador de productos",
+          "Área de recursos informativos",
+          "Rendimiento impecable: FCP 0.7s, CLS 0.003",
+          "CMS para que el cliente gestione contenido"
         ],
-        "metrics": [
-          "FCP: 0.7s",
-          "LCP: 1.2s",
-          "CLS: 0.003"
-        ],
+        "metrics": ["FCP: 0.7s", "LCP: 1.2s", "CLS: 0.003", "Cliente satisfecho y repitiendo"],
         "liveUrl": "https://hearinit.com",
         "githubUrl": "",
         "metricUrl": "https://pagespeed.web.dev/analysis/https-hearinit-com/ysrvdeph6p?form_factor=desktop"
-      },
-      {
-        "title": "Bite & Smash",
-        "year": "2025",
-        "description": "Web para una hamburguesería con carácter. Visual potente, navegación fluida y sabor a diseño bien hecho.",
-        "technologies": "Astro, TailwindCSS, UI/UX",
-        "longDescription": "Diseñé la web de Bite & Smash para reflejar su estilo atrevido y su menú irresistible. El objetivo: destacar sus platos con un diseño limpio, visual y con ritmo. Una web rápida, bien estructurada y con una personalidad que se nota a simple vista.",
-        "features": [
-          "Animaciones suaves y bien optimizadas (GSAP)",
-          "Carga ligera de imágenes",
-          "Diseño 100% adaptado a móviles",
-          "Formulario de contacto integrado",
-          "Sección de blog para novedades y promos"
-        ],
-        "metrics": [
-          "FCP: 0.3s",
-          "LCP: 0.5s",
-          "CLS: 0"
-        ],
-        "liveUrl": "https://bite-and-smash.tunuevaweb.es/",
-        "githubUrl": "https://github.com/tunuevaweb/bite-and-smash",
-        "metricUrl": "https://pagespeed.web.dev/analysis/https-bite-and-smash-tunuevaweb-es/fnvldvriqp?form_factor=desktop"
       }
     ]
   },
@@ -144,44 +97,74 @@
     "title": "Experiencia",
     "positions": [
       {
-        "title": "Desarrollador Full-Stack",
-        "company": "Freelance",
-        "period": "2024 - Hoy",
-        "description": "Trabajo con distintos clientes creando webs modernas, rápidas y agradables de usar. Me muevo bien entre lo técnico y lo visual, cuidando tanto el rendimiento como la experiencia final.",
-        "technologies": "Vue.js, Astro, TailwindCSS, Jamstack"
+        "title": "Desarrollador y Diseñador Web",
+        "company": "Hearinit",
+        "period": "Feb 2025 — Dic 2025",
+        "description": "Diseño y desarrollo completo de la plataforma desde cero. Definición de la arquitectura fullstack con React y JavaScript para componentes dinámicos e interactivos. Implementación de buscador por ubicación, comparador de productos y área de recursos. Enfoque en estabilidad, rendimiento y mantenibilidad del sistema.",
+        "technologies": "React, JavaScript, TailwindCSS, REST APIs, SEO Técnico"
+      },
+      {
+        "title": "Desarrollador de Aplicaciones",
+        "company": "Moddo",
+        "period": "Nov 2024 — Feb 2025",
+        "description": "Mejora y mantenimiento de una aplicación corporativa de gestión de almacenes. Trabajo sobre código legacy realizando ajustes funcionales e incrementales. Adaptación de la aplicación a distintos flujos de uso y dispositivos.",
+        "technologies": "C#, .NET Maui, Blazor"
       },
       {
         "title": "Desarrollador de Sistemas",
         "company": "Accenture",
-        "period": "2023 - 2024",
-        "description": "Me encargué de automatizar procesos y mejorar apps internas con Python y VB.NET. Básicamente, hacer que las cosas fueran más rápidas y menos pesadas para el equipo.",
-        "technologies": "Python, VB.NET, Java, Automatización de procesos"
+        "period": "Mar 2023 — Jun 2024",
+        "description": "Mantenimiento, optimización y migración lógica de aplicaciones corporativas con patrones de diseño orientados a objetos. Desarrollo de scripts para automatizar procesos internos y estandarizar operaciones. Trabajo en equipos multidisciplinares bajo metodología Scrum en entorno corporativo.",
+        "technologies": "Java, Spring Boot, SQL, POO, Python"
       }
     ]
   },
   "philosophy": {
-    "title": "Mi forma de trabajar",
+    "title": "Cómo trabajo",
     "values": [
       {
         "title": "Claridad",
-        "tagline": "Código limpio, comunicación clara.",
-        "description": "Prefiero lo simple y bien hecho. Escribo código que cualquiera pueda entender y mantener. Y con los clientes, igual: comunicación directa, sin jerga innecesaria ni vueltas largas."
+        "tagline": "Sin rodeos.",
+        "description": "Código limpio que cualquiera puede entender. Comunicación directa con el cliente, sin jerga. Si no se puede explicar simple, es que no está bien pensado."
       },
       {
         "title": "Eficiencia",
-        "tagline": "Menos ruido, más resultados.",
-        "description": "Me gusta optimizar. Busco soluciones que sean rápidas, escalables y fáciles de mantener. Si algo se puede automatizar, lo automatizo. Si algo se puede simplificar, también."
+        "tagline": "Hacer más con menos.",
+        "description": "Automatizar lo repetitivo, simplificar lo complejo. Busco soluciones que sean rápidas, escalables y que no den guerra a largo plazo."
       },
       {
         "title": "Diseño con propósito",
         "tagline": "Bonito, pero con sentido.",
-        "description": "Cada detalle visual tiene un motivo. El diseño no es solo estética, es cómo se siente al usarlo. Me gusta que todo lo que creo tenga coherencia, propósito y fluidez."
+        "description": "Cada decisión visual tiene un porqué. El diseño no es decoración, es cómo se siente al usarlo. Me gusta que las cosas tengan coherencia y fluidez."
       }
     ]
   },
+  "testimonials": {
+    "title": "Testimonios",
+    "items": [
+      {
+        "text": "Tanto Gonzalo como su compañero han resuelto el proyecto aportando gran creatividad y dándole un toque profesional y manejable a nuestra web. Les dimos libertad creativa y han cumplido altamente nuestras expectativas. Son super eficaces sacando todo en tiempo y orden. Nos ha encantado su modus operandi, dándonos feedback continuo y matizando aquellas cosas que queríamos cambiar. Recomiendo su servicio, tienen futuro en lo que hacen. Contaremos con ellos para futuros trabajos.",
+        "author": "Daniel",
+        "role": "CEO",
+        "project": "Hearinit"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Construyo productos, no solo interfaces",
+    "description": "Full-stack con visión de producto. Código limpio, decisiones con criterio y cero egos.",
+    "buttonLabel": "Explorar GitHub"
+  },
   "contact": {
     "title": "Contacto",
-    "message": "Estoy abierto a nuevos proyectos freelance. Si tienes una idea en mente, la hablamos y vemos cómo llevarla a la realidad.",
+    "message": "Si buscas a alguien que resuelva problemas desde el día uno, hablemos.",
+    "linkedinLabel": "Mi LinkedIn",
+    "linkedinSub": "Perfil completo y recomendaciones",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "githubSub": "Código abierto y proyectos",
+    "maltLabel": "Malt",
+    "maltSub": "Perfil freelance",
     "footer": "Entre líneas de código, sigue habiendo humanidad."
   }
 }

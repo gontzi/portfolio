@@ -5,206 +5,111 @@ const { contact, personal } = portfolioData;
 
 <section id="contact" class="section">
   <div class="container">
-    <div class="section-grid">
-      <h2 class="section-title">{contact.title}</h2>
-      <div class="section-content">
-        <p class="contact-message fade-in">{contact.message}</p>
-
-        <div class="contact-details">
-          <a href={`mailto:${personal.email}`} class="contact-email fade-in"
-            >{personal.email}</a
-          >
-
-          <div class="google-calendar-container fade-in">
-            <div id="google-calendar-button"></div>
-          </div>
-
-          <p class="calendar-fallback fade-in">
-            ¿Problemas con el calendario?
-            <a
-              href="https://ka0s.site/reservas"
-              target="_blank"
-              class="fallback-link">Usa este enlace directo</a
-            >
-          </p>
-        </div>
-
-        <div class="contact-social-box fade-in">
-          <h4 class="social-label">Encuéntrame en:</h4>
-          <div class="contact-social">
-            <a
-              href={personal.social.linkedin}
-              target="_blank"
-              class="social-link">LinkedIn</a
-            >
-            <a href={personal.social.github} target="_blank" class="social-link"
-              >GitHub</a
-            >
-            <a href={personal.social.malt} target="_blank" class="social-link"
-              >Malt</a
-            >
-          </div>
-        </div>
-      </div>
+    <div class="section-head fade-in">
+      <span class="section-head-dot"></span>
+      <span class="section-head-label">{contact.title}</span>
+      <span class="section-head-scribble">
+        <svg viewBox="0 0 160 10"><use href="#scribble"/></svg>
+      </span>
+    </div>
+    <p class="contact-message fade-in">{contact.message}</p>
+    <div class="contact-row fade-in">
+      <a href={personal.social.linkedin} target="_blank" class="contact-item">
+        <span class="contact-char">L</span>
+        <span class="contact-name">{contact.linkedinLabel}</span>
+        <span class="contact-detail">{contact.linkedinSub}</span>
+        <span class="contact-hint">↗</span>
+      </a>
+      <a href={`mailto:${personal.email}`} class="contact-item">
+        <span class="contact-char">@</span>
+        <span class="contact-name">{contact.emailLabel}</span>
+        <span class="contact-detail">{personal.email}</span>
+      </a>
+      <a href={personal.social.github} target="_blank" class="contact-item">
+        <span class="contact-char">G</span>
+        <span class="contact-name">{contact.githubLabel}</span>
+        <span class="contact-detail">{contact.githubSub}</span>
+        <span class="contact-hint">↗</span>
+      </a>
+      <a href={personal.social.malt} target="_blank" class="contact-item">
+        <span class="contact-char">M</span>
+        <span class="contact-name">{contact.maltLabel}</span>
+        <span class="contact-detail">{contact.maltSub}</span>
+        <span class="contact-hint">↗</span>
+      </a>
     </div>
   </div>
 </section>
 
 <style>
-  .contact-message {
-    font-size: 1.5em;
-    font-family: var(--font-heading);
-    color: var(--text-main);
-    margin-bottom: 3rem;
-    line-height: 1.4;
+  .contact-message { font-size: 1.05rem; line-height: 1.6; color: var(--text-muted); max-width: 50ch; margin-bottom: 2.5rem; }
+
+  .contact-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.25rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-card);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .contact-details {
-    margin-bottom: 4rem;
+  .contact-item:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
   }
 
-  .contact-email {
-    font-size: 2em;
-    color: var(--text-main);
-    font-family: var(--font-body);
+  .contact-char {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
     font-weight: 700;
-    text-decoration: underline;
-    text-decoration-color: var(--accent);
-    text-underline-offset: 8px;
-    margin-bottom: 3rem;
-    display: inline-block;
+    color: var(--accent);
+    line-height: 1;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .contact-item:hover .contact-char { transform: translateY(-3px); }
+
+  .contact-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    transition: color 0.3s ease;
+  }
+
+  .contact-item:hover .contact-name { color: var(--accent); }
+
+  .contact-detail {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    line-height: 1.3;
+  }
+
+  .contact-hint {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    font-size: 0.85rem;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-4px);
     transition: all 0.3s ease;
   }
 
-  .contact-email:hover {
-    color: var(--accent);
-    text-decoration-color: var(--text-main);
-  }
-
-  .google-calendar-container {
-    margin-bottom: 1.5rem;
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .calendar-fallback {
-    color: var(--text-muted);
-    font-size: 0.85em;
-    margin-bottom: 3rem;
-    font-family: var(--font-body);
-  }
-
-  .fallback-link {
-    color: var(--text-main);
-    font-weight: 600;
-    text-decoration: underline;
-  }
-
-  .contact-social-box {
-    border-top: 2px solid var(--text-main);
-    padding-top: 2rem;
-  }
-
-  .social-label {
-    font-family: var(--font-body);
-    font-size: 0.8em;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-  }
-
-  .contact-social {
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  .social-link {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 1em;
-    font-weight: 600;
-    font-family: var(--font-body);
-    transition: color 0.3s ease;
-    position: relative;
-  }
-
-  .social-link::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
-  }
-
-  .social-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
+  .contact-item:hover .contact-hint { opacity: 1; transform: translateX(0); }
 
   @media (max-width: 768px) {
-    .contact-email {
-      font-size: 1.25em;
-    }
-
-    .contact-social {
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
+    .contact-row { grid-template-columns: repeat(2, 1fr); }
+    .contact-item { padding: 1.25rem 1rem 1rem; }
+    .contact-char { font-size: 2rem; }
+    .contact-hint { display: none; }
   }
 </style>
-
-<!-- Google Calendar Appointment Scheduling begin -->
-<link
-  href="https://calendar.google.com/calendar/scheduling-button-script.css"
-  rel="stylesheet"
-/>
-<script
-  src="https://calendar.google.com/calendar/scheduling-button-script.js"
-  async></script>
-<script>
-  (function () {
-    window.addEventListener("load", function () {
-      // @ts-ignore
-      calendar.schedulingButton.load({
-        url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1QF1BIcez4Jt9OWjC8hrZd7a34UfemQncXGpb1P-g7RRPvegXfnJFlihzR-x_ujcx68apg_LlY?gv=true",
-        color: "#1A2C38", // Navy
-        label: "Reservar una cita",
-        target: document.getElementById("google-calendar-button"),
-      });
-
-      setTimeout(() => {
-        const container = document.getElementById("google-calendar-button");
-        if (container && container.nextElementSibling) {
-          const button = container.nextElementSibling as HTMLElement;
-
-          button.style.backgroundColor = "#1A2C38"; // Navy
-          button.style.color = "#F3F0E7"; // Cream
-          button.style.border = "2px solid #1A2C38";
-          button.style.padding = "16px 32px";
-          button.style.fontSize = "0.9em";
-          button.style.textTransform = "uppercase";
-          button.style.fontWeight = "700";
-          button.style.borderRadius = "4px";
-          button.style.boxShadow = "4px 4px 0px #E3A83F"; // Mustard shadow
-          button.style.transition = "all 0.2s ease";
-
-          button.addEventListener("mouseenter", () => {
-            button.style.transform = "translate(2px, 2px)";
-            button.style.boxShadow = "2px 2px 0px #E3A83F";
-          });
-
-          button.addEventListener("mouseleave", () => {
-            button.style.transform = "translate(0, 0)";
-            button.style.boxShadow = "4px 4px 0px #E3A83F";
-          });
-        }
-      }, 500);
-    });
-  })();
-</script>

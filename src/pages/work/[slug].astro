@@ -3,305 +3,99 @@ import MainLayout from "../../layouts/Layout.astro";
 import portfolioData from "../../data/portfolio.json";
 
 export async function getStaticPaths() {
-  const createSlug = (title) => {
-    return title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-  };
-
-  const projects = portfolioData.work.projects;
-  return projects.map((project) => ({
-    params: { slug: createSlug(project.title) },
-    props: { project },
-  }));
+  const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  return portfolioData.work.projects.map(p => ({ params: { slug: slug(p.title) }, props: { project: p } }));
 }
 
 const { project } = Astro.props;
-
-if (!project) {
-  return Astro.redirect("/404");
-}
+if (!project) return Astro.redirect("/404");
 ---
 
-<MainLayout title={`${project.title} - Gonzalo`}>
-  <section class="project-detail-section">
-    <div class="container container-wide">
-      <div class="section-grid">
-        <h2 class="section-title">Proyecto</h2>
-        <div class="section-content">
-          <h1 class="project-detail-title fade-in">{project.title}</h1>
+<MainLayout title={`${project.title} — Gonzalo`}>
+  <section class="detail">
+    <div class="container">
+      <div class="section-head fade-in">
+        <span class="section-head-dot"></span>
+        <span class="section-head-label">Proyecto</span>
+        <span class="section-head-scribble">
+          <svg viewBox="0 0 160 10"><use href="#scribble"/></svg>
+        </span>
+      </div>
 
-          <div class="project-detail-meta fade-in">
-            <span class="project-tag">{project.year}</span>
-            <span class="project-tag-accent">{project.technologies}</span>
-          </div>
+      <h1 class="detail-title fade-in">{project.title}</h1>
+      <div class="detail-meta fade-in">
+        <span class="detail-tag">{project.year}</span>
+        <span class="detail-tag-fill">{project.technologies}</span>
+      </div>
 
-          <div class="project-body-grid">
-            <div class="project-main-info fade-in">
-              <p class="project-detail-description">
-                {project.longDescription}
-              </p>
-
-              <div class="project-detail-links">
-                {
-                  project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="btn-retro"
-                    >
-                      Ver sitio en vivo
-                    </a>
-                  )
-                }
-                {
-                  project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="social-button"
-                    >
-                      GitHub
-                    </a>
-                  )
-                }
-              </div>
-            </div>
-
-            <aside class="project-sidebar fade-in">
-              {
-                project.features && project.features.length > 0 && (
-                  <div class="sidebar-box">
-                    <h3>Características</h3>
-                    <ul>
-                      {project.features.map((feature) => (
-                        <li>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )
-              }
-
-              {
-                project.metrics && project.metrics.length > 0 && (
-                  <div class="sidebar-box accent">
-                    <h3>Métricas</h3>
-                    <ul>
-                      {project.metrics.map((metric) => (
-                        <li>{metric}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )
-              }
-            </aside>
-          </div>
-
-          <div class="back-link-container fade-in">
-            <a href="/#work" class="back-link">← Volver a todos los proyectos</a
-            >
+      <div class="detail-layout fade-in">
+        <div class="detail-main">
+          <p class="detail-desc">{project.longDescription}</p>
+          <div class="detail-links">
+            {project.liveUrl && <a href={project.liveUrl} target="_blank" class="btn btn-primary">Ver sitio en vivo</a>}
+            {project.githubUrl && <a href={project.githubUrl} target="_blank" class="btn btn-outline">GitHub</a>}
           </div>
         </div>
+        <aside class="detail-side">
+          {project.features?.length > 0 && (
+            <div class="detail-box">
+              <h3 class="detail-box-title">Características</h3>
+              <ul class="detail-list">
+                {project.features.map(f => <li>{f}</li>)}
+              </ul>
+            </div>
+          )}
+          {project.metrics?.length > 0 && (
+            <div class="detail-box detail-box-accent">
+              <h3 class="detail-box-title">Métricas</h3>
+              <ul class="detail-list">
+                {project.metrics.map(m => <li>{m}</li>)}
+              </ul>
+            </div>
+          )}
+        </aside>
+      </div>
+
+      <div class="detail-back fade-in">
+        <a href="/#work">← Volver a trabajos</a>
       </div>
     </div>
   </section>
 </MainLayout>
 
 <style>
-  .project-detail-section {
-    padding: 10rem 0 6rem;
-  }
+  .detail { padding: 10rem 0 6rem; }
+  .detail-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em; }
 
-  .container-wide {
-    max-width: 1200px; /* Wider container for project details */
-  }
+  .detail-meta { display: flex; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .detail-tag { padding: 0.3rem 0.9rem; border: 1px solid var(--border); border-radius: 6px; font-weight: 600; font-size: 0.8rem; }
+  .detail-tag-fill { padding: 0.3rem 0.9rem; background: var(--accent-soft); color: var(--accent); border-radius: 6px; font-weight: 600; font-size: 0.8rem; }
 
-  .section-grid {
-    display: grid;
-    grid-template-columns: 180px 1fr; /* Reduced from 250px to give more space to content */
-    gap: 3rem;
-  }
+  .detail-layout { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; margin-bottom: 4rem; align-items: start; }
+  .detail-desc { font-size: 1.15rem; line-height: 1.7; margin-bottom: 2.5rem; max-width: 65ch; }
+  .detail-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
-  .project-detail-title {
-    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
-    font-family: var(--font-heading);
-    margin-bottom: 1.5rem;
-    color: var(--text-main);
-    line-height: 1.1;
-  }
+  .detail-side { display: flex; flex-direction: column; gap: 1.25rem; }
 
-  .project-detail-meta {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 4rem;
-    flex-wrap: wrap;
-  }
+  .detail-box { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow-sm); }
+  .detail-box-accent { background: var(--accent-soft); border-color: var(--accent); }
 
-  .project-tag {
-    padding: 0.4rem 1rem;
-    border: 2px solid var(--text-main);
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.85em;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
+  .detail-box-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
 
-  .project-tag-accent {
-    padding: 0.4rem 1rem;
-    background: var(--text-main);
-    color: var(--bg-color);
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.85em;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+  .detail-list { list-style: none; padding: 0; }
+  .detail-list li { margin-bottom: 0.5rem; font-size: 0.9rem; display: flex; gap: 0.5rem; line-height: 1.4; }
+  .detail-list li::before { content: "→"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
 
-  .project-body-grid {
-    display: grid;
-    grid-template-columns: 1fr 320px; /* Fixed sidebar width for better control, more space for text */
-    gap: 4rem;
-    margin-bottom: 5rem;
-    align-items: start;
-  }
-
-  .project-detail-description {
-    color: var(--text-main);
-    font-size: 1.25em;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-    max-width: 70ch; /* Better line length for readability */
-  }
-
-  .sidebar-box {
-    border: 2px solid var(--text-main);
-    padding: 2rem;
-    border-radius: 4px;
-    margin-bottom: 2rem;
-    box-shadow: 6px 6px 0px var(--text-main);
-    background: var(--bg-color);
-  }
-
-  .sidebar-box.accent {
-    background: var(--accent);
-    box-shadow: 6px 6px 0px var(--text-main);
-  }
-
-  .sidebar-box h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-main);
-    border-bottom: 1px solid rgba(26, 44, 56, 0.2);
-    padding-bottom: 0.5rem;
-  }
-
-  .sidebar-box ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .sidebar-box li {
-    margin-bottom: 0.8rem;
-    font-size: 1em;
-    font-family: var(--font-body);
-    display: flex;
-    gap: 0.5rem;
-    align-items: flex-start;
-    line-height: 1.4;
-  }
-
-  .sidebar-box li::before {
-    content: "→";
-    color: var(--text-main);
-    font-weight: 800;
-    flex-shrink: 0;
-  }
-
-  .project-detail-links {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-retro {
-    display: inline-block;
-    background: var(--text-main);
-    color: var(--bg-color);
-    padding: 1rem 2.5rem;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    box-shadow: 4px 4px 0px var(--accent);
-    transition: all 0.2s ease;
-    border: 2px solid var(--text-main);
-  }
-
-  .btn-retro:hover {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px var(--accent);
-  }
-
-  .social-button {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    border: 2px solid var(--text-main);
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    letter-spacing: 0.1em;
-  }
-
-  .social-button:hover {
-    background: var(--accent);
-  }
-
-  .back-link-container {
-    border-top: 2px solid var(--text-main);
-    padding-top: 3rem;
-  }
-
-  .back-link {
-    font-family: var(--font-body);
-    font-weight: 700;
-    color: var(--text-muted);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    transition: color 0.3s ease;
-  }
-
-  .back-link:hover {
-    color: var(--accent);
-  }
+  .detail-back { border-top: 1px solid var(--border); padding-top: 2rem; }
+  .detail-back a { font-weight: 500; color: var(--text-muted); font-size: 0.9rem; transition: color 0.2s; }
+  .detail-back a:hover { color: var(--accent); }
 
   @media (max-width: 1024px) {
-    .project-body-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-    .sidebar-box {
-      max-width: 500px;
-    }
+    .detail-layout { grid-template-columns: 1fr; gap: 2rem; }
   }
 
   @media (max-width: 768px) {
-    .section-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-    .project-detail-title {
-      font-size: 2.5rem;
-    }
-    .project-detail-section {
-      padding-top: 8rem;
-    }
+    .detail { padding-top: 8rem; }
+    .detail-title { font-size: 2.2rem; }
   }
 </style>
